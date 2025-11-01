@@ -87,6 +87,7 @@ public class PeliculaData {
               peli.setGenero(rs.getString("genero"));
               peli.setEstreno(rs.getDate("estreno").toLocalDate());
               peli.setCartelera(rs.getBoolean("cartelera"));
+              peli.setRutaImagen(rs.getString("rutaImagen"));
         
         
             }else{
@@ -124,6 +125,7 @@ public class PeliculaData {
                     peli.setGenero(rs.getString("genero"));
                     peli.setEstreno(rs.getDate("estreno").toLocalDate());
                     peli.setCartelera(rs.getBoolean("cartelera"));
+                    peli.setRutaImagen(rs.getString("rutaImagen"));
                     
                     peliculas.add(peli);
                 
@@ -206,7 +208,7 @@ public class PeliculaData {
     }
     
     public void actualizarPelicula(Pelicula p){
-        String query = "UPDATE pelicula SET titulo = ?, director = ?, actores = ?, origen = ?, genero = ?, estreno = ?, cartelera = ?"
+        String query = "UPDATE pelicula SET titulo = ?, director = ?, actores = ?, origen = ?, genero = ?, estreno = ?, cartelera = ?, rutaImagen = ?"
                 + "WHERE idPelicula = ?";
     
         try {

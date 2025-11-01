@@ -34,6 +34,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jmenuBar = new javax.swing.JMenuBar();
         jmPeliculas = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        menuListaPelis = new javax.swing.JMenuItem();
         jmFunciones = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,23 +61,22 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap(327, Short.MAX_VALUE)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                        .addComponent(btnAdministrar)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                        .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(292, 292, 292))))
+                .addGap(297, 297, 297)
+                .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(334, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAdministrar)
+                .addGap(14, 14, 14))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap(242, Short.MAX_VALUE)
+                .addContainerGap(263, Short.MAX_VALUE)
                 .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(263, 263, 263)
+                .addGap(251, 251, 251)
                 .addComponent(btnAdministrar)
-                .addGap(33, 33, 33))
+                .addGap(24, 24, 24))
         );
 
         jmenuBar.setEnabled(false);
@@ -91,6 +91,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jmPeliculas.add(jMenuItem1);
 
+        menuListaPelis.setText("Lista de peliculas");
+        menuListaPelis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuListaPelisActionPerformed(evt);
+            }
+        });
+        jmPeliculas.add(menuListaPelis);
+
         jmenuBar.add(jmPeliculas);
 
         jmFunciones.setText("Funciones");
@@ -102,10 +110,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jDesktopPane1)
-                .addContainerGap())
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,6 +141,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jDesktopPane1.add(pelis);
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void menuListaPelisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuListaPelisActionPerformed
+        // TODO add your handling code here:
+        ListarPeliculas list = new ListarPeliculas();
+        list.setVisible(true);
+        jDesktopPane1.add(list);
+    }//GEN-LAST:event_menuListaPelisActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,5 +182,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jmFunciones;
     private javax.swing.JMenu jmPeliculas;
     private javax.swing.JMenuBar jmenuBar;
+    private javax.swing.JMenuItem menuListaPelis;
     // End of variables declaration//GEN-END:variables
 }
