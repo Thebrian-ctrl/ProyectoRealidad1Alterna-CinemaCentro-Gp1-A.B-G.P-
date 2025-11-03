@@ -61,10 +61,17 @@ public class PanelItemPelicula extends javax.swing.JPanel {
         
         JLabel labelDirector = new JLabel("Director: " + pelicula.getDirector());
         JLabel labelGenero = new JLabel("Genero: " + pelicula.getGenero());
+        JLabel labelActores = new JLabel("Actores: " + pelicula.getActores());
+        JLabel labelOrigen = new JLabel("Origen: " + pelicula.getOrigen());
+        JLabel labelEstreno = new JLabel("Fecha de estreno: " + pelicula.getEstreno());
         
         panelDatos.add(labelTitulo);
         panelDatos.add(labelDirector);
         panelDatos.add(labelGenero);
+        panelDatos.add(labelActores);
+        panelDatos.add(labelOrigen);
+        panelDatos.add(labelEstreno);
+        
         this.add(panelDatos, BorderLayout.CENTER);
         
         //--------------------------acciones-------------------------------------------------
@@ -77,13 +84,15 @@ public class PanelItemPelicula extends javax.swing.JPanel {
         panelBotones.add(botonEliminar);
         panelBotones.add(botonBaja);
         
+       
+        
         botonEliminar.addActionListener(e ->{
             int opcion = JOptionPane.showConfirmDialog(this, "¿Seguro que desea eliminar esta pelicula de la base de datos?",
                      "Confirmar Eliminicion", JOptionPane.YES_NO_OPTION);
                 
                  if(opcion == JOptionPane.YES_OPTION) {
                      peliData.eliminarPelicula(pelicula.getIdPelicula());
-                     JOptionPane.showMessageDialog(this, "Pelicula eliminada correctamente");
+                     
                 
             }
         });
@@ -99,7 +108,7 @@ public class PanelItemPelicula extends javax.swing.JPanel {
             }
             
         });
-                
+          
         this.add(panelBotones, BorderLayout.EAST);
         
         

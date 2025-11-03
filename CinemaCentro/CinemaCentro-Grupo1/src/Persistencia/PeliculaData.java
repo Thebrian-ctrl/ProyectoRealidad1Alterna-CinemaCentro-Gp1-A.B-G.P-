@@ -221,6 +221,9 @@ public class PeliculaData {
             ps.setString(5, p.getGenero());
             ps.setDate(6, Date.valueOf(p.getEstreno()));
             ps.setBoolean(7, p.isCartelera());
+            ps.setString(8, p.getRutaImagen());
+            
+            ps.setInt(9, p.getIdPelicula());
             
             int actualizado = ps.executeUpdate();
             
