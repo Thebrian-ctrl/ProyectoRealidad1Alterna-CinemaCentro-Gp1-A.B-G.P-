@@ -158,7 +158,7 @@ public class LugarData {
     public List<Lugar> buscarLugaresPorFuncion(int idFuncion){
         List<Lugar> lugares = new ArrayList<>();
         
-        String query = "SELECT * FROM lugar WHERE idFuncion = ? AND estado = 1";
+        String query = "SELECT * FROM lugar WHERE idFuncion = ?";
         
         try {
             PreparedStatement ps = conn.prepareStatement(query);

@@ -238,6 +238,79 @@ public class PeliculaData {
         }
     }
     
+    public Pelicula buscarPeliculaPorId(int idPelicula) {
+    
+    String query = "SELECT * FROM pelicula WHERE idPelicula = ?";
+    Pelicula peli = null;
+    
+    try {
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setInt(1, idPelicula);
+        
+        ResultSet rs = ps.executeQuery();
+        
+        if (rs.next()) {
+            peli = new Pelicula();
+            peli.setIdPelicula(rs.getInt("idPelicula"));
+            peli.setTitulo(rs.getString("titulo"));
+            peli.setDirector(rs.getString("director"));
+            peli.setActores(rs.getString("actores"));
+            peli.setOrigen(rs.getString("origen"));
+            peli.setGenero(rs.getString("genero"));
+            peli.setEstreno(rs.getDate("estreno").toLocalDate());
+            peli.setCartelera(rs.getBoolean("cartelera"));
+            peli.setRutaImagen(rs.getString("rutaImagen"));
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontró la película con ID " + idPelicula);
+        }
+        
+        ps.close();
+        
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error al buscar la película por ID: " + e.getMessage());
+    }
+    
+    return peli;
+}
+    
+   public List<Pelicula> listarPeliculas(){
+        String query = "SELECT * FROM pelicula";
+        
+        List<Pelicula> peliculas = new ArrayList<>();
+        
+            try {
+                PreparedStatement ps = conn.prepareStatement(query);
+                ResultSet rs = ps.executeQuery();
+                
+                while(rs.next()){
+                    
+                    Pelicula peli = new Pelicula();
+                    
+                    peli.setIdPelicula(rs.getInt("idPelicula"));
+                    peli.setTitulo(rs.getString("titulo"));
+                    peli.setDirector(rs.getString("director"));
+                    peli.setActores(rs.getString("actores"));
+                    peli.setOrigen(rs.getString("origen"));
+                    peli.setGenero(rs.getString("genero"));
+                    peli.setEstreno(rs.getDate("estreno").toLocalDate());
+                    peli.setCartelera(rs.getBoolean("cartelera"));
+                    peli.setRutaImagen(rs.getString("rutaImagen"));
+                    
+                    peliculas.add(peli);
+                
+                
+                }
+                
+                ps.close();
+                
+                
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al listar las peliculas en cartelera: " + e.getMessage());
+            
+        }
+            return peliculas;
+    }
+    
     
     
 }

@@ -29,20 +29,25 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
-        btnComprar = new javax.swing.JButton();
+        btnIniciarSesion = new javax.swing.JButton();
         btnAdministrar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jButtonRegistrarse = new javax.swing.JButton();
         jmenuBar = new javax.swing.JMenuBar();
         jmPeliculas = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         menuListaPelis = new javax.swing.JMenuItem();
         jmFunciones = new javax.swing.JMenu();
+        jMenuFuncion = new javax.swing.JMenuItem();
+        jMenuSala = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnComprar.setText("Comprar Entrada");
-        btnComprar.addActionListener(new java.awt.event.ActionListener() {
+        btnIniciarSesion.setText("Iniciar sesion");
+        btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnComprarActionPerformed(evt);
+                btnIniciarSesionActionPerformed(evt);
             }
         });
 
@@ -53,28 +58,61 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jDesktopPane1.setLayer(btnComprar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("¿No tienes cuenta? Resgistrate gratis");
+
+        jButtonRegistrarse.setText("Registrarse");
+        jButtonRegistrarse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistrarseActionPerformed(evt);
+            }
+        });
+
+        jDesktopPane1.setLayer(btnIniciarSesion, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(btnAdministrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jButtonRegistrarse, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(297, 297, 297)
-                .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(334, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAdministrar)
-                .addGap(14, 14, 14))
+                .addGap(60, 547, Short.MAX_VALUE)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                        .addComponent(btnAdministrar)
+                        .addGap(14, 14, 14))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(307, 307, 307))))
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnIniciarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonRegistrarse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap(263, Short.MAX_VALUE)
-                .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(251, 251, 251)
+                .addContainerGap(364, Short.MAX_VALUE)
+                .addComponent(btnIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonRegistrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addGap(51, 51, 51)
                 .addComponent(btnAdministrar)
                 .addGap(24, 24, 24))
         );
@@ -102,6 +140,23 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jmenuBar.add(jmPeliculas);
 
         jmFunciones.setText("Funciones");
+
+        jMenuFuncion.setText("Funciones");
+        jMenuFuncion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuFuncionActionPerformed(evt);
+            }
+        });
+        jmFunciones.add(jMenuFuncion);
+
+        jMenuSala.setText("Sala");
+        jMenuSala.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuSalaActionPerformed(evt);
+            }
+        });
+        jmFunciones.add(jMenuSala);
+
         jmenuBar.add(jmFunciones);
 
         setJMenuBar(jmenuBar);
@@ -120,14 +175,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
-      jDesktopPane1.removeAll();
-      jDesktopPane1.repaint();
-      InicioDeSesion sesion = new InicioDeSesion();
-      sesion.setVisible(true);
-      jDesktopPane1.add(sesion);
+    private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
       
-    }//GEN-LAST:event_btnComprarActionPerformed
+      
+    }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnAdministrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministrarActionPerformed
         // TODO add your handling code here:
@@ -148,6 +199,33 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         list.setVisible(true);
         jDesktopPane1.add(list);
     }//GEN-LAST:event_menuListaPelisActionPerformed
+
+    private void jMenuFuncionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuFuncionActionPerformed
+        // TODO add your handling code here:
+        VistaFuncion fun = new VistaFuncion();
+        fun.setVisible(true);
+        jDesktopPane1.add(fun);        
+    }//GEN-LAST:event_jMenuFuncionActionPerformed
+
+    private void jMenuSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSalaActionPerformed
+        // TODO add your handling code here:
+        vistaSala sala = new vistaSala();
+        sala.setVisible(true);
+        jDesktopPane1.add(sala);
+    }//GEN-LAST:event_jMenuSalaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        VistaDetalleTicket ticket = new VistaDetalleTicket();
+        ticket.setVisible(true);
+        ticket.setLocationRelativeTo(this);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarseActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButtonRegistrarseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,9 +254,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdministrar;
-    private javax.swing.JButton btnComprar;
+    private javax.swing.JButton btnIniciarSesion;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonRegistrarse;
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenuItem jMenuFuncion;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuSala;
     private javax.swing.JMenu jmFunciones;
     private javax.swing.JMenu jmPeliculas;
     private javax.swing.JMenuBar jmenuBar;

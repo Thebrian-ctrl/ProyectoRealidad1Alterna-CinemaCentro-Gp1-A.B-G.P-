@@ -137,7 +137,9 @@ public class Funcion {
 
     @Override
     public String toString() {
-        return "Funcion{" + "pelicula=" + pelicula + ", idioma=" + idioma + ", es3d=" + es3d + ", subtitulado=" + subtitulado + ", horaInicio=" + horaInicio + ", horaFin=" + horaFin + ", listaLugaresDisp=" + listaLugaresDisp + ", salaProyeccion=" + salaProyeccion + ", precio=" + precio + '}';
+        return 
+           ", pelicula=" + (pelicula != null ? pelicula.getTitulo() : "null") +
+           '}';
     }
 
     

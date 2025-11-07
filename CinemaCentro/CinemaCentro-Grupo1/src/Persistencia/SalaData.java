@@ -5,6 +5,7 @@
  */
 package Persistencia;
 
+import Modelo.Lugar;
 import Modelo.MyConexion;
 import Modelo.Sala;
 import java.sql.Connection;
@@ -239,7 +240,37 @@ public class SalaData {
     return false;
     }
 
-    
+    public void crearLugarParaSala (Sala sala){
+        LugarData lugarData = new LugarData();
+        
+        //busco la capacidad de la sala
+        int capacidad = sala.getCapacidad();
+        int asientosPorFila =4;
+        int totalFilas = (int) Math.ceil((double) capacidad / asientosPorFila);
+        
+        
+        char filaActual = 'A';
+        
+        int contador =0;
+        
+        for (int i = 0; i < totalFilas; i++) {
+        for(int num=1 ; num <= asientosPorFila && contador < capacidad ;num++){
+     
+            Lugar lugar = new Lugar ();
+            lugar.setFila(filaActual);
+            lugar.setNum(num);
+            lugar.setEstado(true);
+            lugar.setFuncion(null); // todavia no le asigno una funcion
+            
+            lugarData.guardarLugar(lugar);     
+            contador ++;
+     }
+        
+        filaActual++;   
+    }
+        
+        JOptionPane.showMessageDialog(null, "Se crearon automaticamente "+capacidad+" lugares por sala ");
+    }
       
     
 }

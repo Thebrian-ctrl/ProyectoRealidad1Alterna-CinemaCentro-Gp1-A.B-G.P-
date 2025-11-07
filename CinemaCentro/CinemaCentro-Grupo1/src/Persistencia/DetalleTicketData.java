@@ -27,7 +27,7 @@ public class DetalleTicketData {
     }
 
     public void guardarDetalleTicket(DetalleTicket detalle) {
-        String query = "INSERT INTO DetalleTicket (idFuncion, idLugar, cantidad, subtotal)"
+        String query = "INSERT INTO detalleTicket (idFuncion, idLugar, cantidad, subtotal)"
                 + " VALUES(?, ?, ?, ?)";
 
         try {
@@ -35,7 +35,14 @@ public class DetalleTicketData {
 
             ps.setInt(1, detalle.getFuncion().getIdFuncion());
             ps.setInt(2, detalle.getLugar().getIdLugar());
-            ps.setInt(3, detalle.getCantidad());
+            
+            if(detalle.getCantidad() != null){
+                ps.setInt(3, detalle.getCantidad().getIdLugar());
+                }else{
+                ps.setNull(3, java.sql.Types.INTEGER);
+            }
+            
+            
             ps.setDouble(4, detalle.getSubtotal());
 
             ps.executeUpdate();
@@ -45,12 +52,17 @@ public class DetalleTicketData {
             if (rs.next()) {
                 detalle.setIdDetalleTicket(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "DetalleTicket guardado correctamente");
+                
+               
             } else {
                 JOptionPane.showMessageDialog(null, "Error al guardar el DetalleTicket");
             }
+             ps.close();
+             rs.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla: " + e.getMessage());
         }
+        
 
     }
 
@@ -64,7 +76,7 @@ public class DetalleTicketData {
 
             ps.setInt(1, d.getFuncion().getIdFuncion());
             ps.setInt(2, d.getLugar().getIdLugar());
-            ps.setInt(3, d.getCantidad());
+            ps.setInt(3, d.getCantidad().getIdLugar());
             ps.setDouble(4, d.getSubtotal());
             ps.setInt(5, d.getIdDetalleTicket());
 
@@ -121,7 +133,7 @@ public class DetalleTicketData {
                 detalle = new DetalleTicket();
 
                 detalle.setIdDetalleTicket(rs.getInt("idDetalleTicket"));
-                detalle.setCantidad(rs.getInt("cantidad"));
+                //detalle.setCantidad(rs.getInt("cantidad"));
                 detalle.setSubtotal(rs.getDouble("subtotal"));
                 Funcion funcion = new Funcion();
                 funcion.setIdFuncion(rs.getInt("idFuncion"));
@@ -129,6 +141,11 @@ public class DetalleTicketData {
 
                 Lugar lugar = new Lugar();
                 lugar.setIdLugar(rs.getInt("idLugar"));
+                
+                Lugar lugar2 = new Lugar();
+                
+                lugar2.setIdLugar(rs.getInt("cantidad"));
+                
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontro el detalleticket");
             }

@@ -6,6 +6,7 @@
 package Modelo;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  *
@@ -119,8 +120,70 @@ public class Pelicula {
 
     @Override
     public String toString() {
-        return "Pelicula{" + "idPelicula=" + idPelicula + ", titulo=" + titulo + ", director=" + director + ", actores=" + actores + ", origen=" + origen + ", genero=" + genero + ", estreno=" + estreno + ", cartelera=" + cartelera + '}';
+       // return "Pelicula{" + "idPelicula=" + idPelicula + ", titulo=" + titulo + ", director=" + director + ", actores=" + actores + ", origen=" + origen + ", genero=" + genero + ", estreno=" + estreno + ", cartelera=" + cartelera + ", rutaImagen=" + rutaImagen + '}';
+        return titulo + " (" + genero + ")";
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + this.idPelicula;
+        hash = 53 * hash + Objects.hashCode(this.titulo);
+        hash = 53 * hash + Objects.hashCode(this.director);
+        hash = 53 * hash + Objects.hashCode(this.actores);
+        hash = 53 * hash + Objects.hashCode(this.origen);
+        hash = 53 * hash + Objects.hashCode(this.genero);
+        hash = 53 * hash + Objects.hashCode(this.estreno);
+        hash = 53 * hash + (this.cartelera ? 1 : 0);
+        hash = 53 * hash + Objects.hashCode(this.rutaImagen);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Pelicula other = (Pelicula) obj;
+        if (this.idPelicula != other.idPelicula) {
+            return false;
+        }
+        if (this.cartelera != other.cartelera) {
+            return false;
+        }
+        if (!Objects.equals(this.titulo, other.titulo)) {
+            return false;
+        }
+        if (!Objects.equals(this.director, other.director)) {
+            return false;
+        }
+        if (!Objects.equals(this.actores, other.actores)) {
+            return false;
+        }
+        if (!Objects.equals(this.origen, other.origen)) {
+            return false;
+        }
+        if (!Objects.equals(this.genero, other.genero)) {
+            return false;
+        }
+        if (!Objects.equals(this.rutaImagen, other.rutaImagen)) {
+            return false;
+        }
+        if (!Objects.equals(this.estreno, other.estreno)) {
+            return false;
+        }
+        return true;
+    }
+
+    
+
+   
     
     
     

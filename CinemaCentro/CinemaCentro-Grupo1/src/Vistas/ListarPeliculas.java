@@ -62,7 +62,7 @@ public class ListarPeliculas extends javax.swing.JInternalFrame {
     private void cargarPeliculas(){
         PanelContenedor.removeAll();
         
-        List<Pelicula> peliculas = peliculaData.listarPeliculasCartelera();
+        List<Pelicula> peliculas = peliculaData.listarPeliculas();
         
         for(Pelicula p : peliculas){
             

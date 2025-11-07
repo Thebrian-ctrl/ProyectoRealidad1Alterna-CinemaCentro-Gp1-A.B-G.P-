@@ -16,20 +16,20 @@ public class DetalleTicket {
     private int idDetalleTicket;
     private Funcion funcion;
     private Lugar lugar;
-    private int cantidad;
+    private Lugar cantidad;
     private double subtotal;
 
     public DetalleTicket() {
     }
 
-    public DetalleTicket(Funcion funcion, Lugar lugar, int cantidad, double subtotal) {
+    public DetalleTicket(Funcion funcion, Lugar lugar, Lugar cantidad, double subtotal) {
         this.funcion = funcion;
         this.lugar = lugar;
         this.cantidad = cantidad;
         this.subtotal = subtotal;
     }
 
-    public DetalleTicket(int idDetalleTicket, Funcion funcion, Lugar lugar, int cantidad, double subtotal) {
+    public DetalleTicket(int idDetalleTicket, Funcion funcion, Lugar lugar, Lugar cantidad, double subtotal) {
         this.idDetalleTicket = idDetalleTicket;
         this.funcion = funcion;
         this.lugar = lugar;
@@ -61,11 +61,11 @@ public class DetalleTicket {
         this.lugar = lugar;
     }
 
-    public int getCantidad() {
+    public Lugar getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(Lugar cantidad) {
         this.cantidad = cantidad;
     }
 

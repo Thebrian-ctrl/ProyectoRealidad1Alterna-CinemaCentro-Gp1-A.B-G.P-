@@ -77,7 +77,13 @@ public class Lugar {
 
     @Override
     public String toString() {
-        return "Lugar{" + "fila=" + fila + ", num=" + num + ", estado=" + estado + ", funcion=" + funcion + '}';
+         return "Lugar{" +
+           "idLugar=" + idLugar +
+           ", fila=" + fila +
+           ", num=" + num +
+           ", estado=" + estado +
+           ", idFuncion=" + (funcion != null ? funcion.getIdFuncion() : "null") +
+           '}';
     }
     
     

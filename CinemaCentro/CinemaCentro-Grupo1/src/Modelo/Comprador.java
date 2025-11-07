@@ -88,7 +88,7 @@ public class Comprador {
 
     @Override
     public String toString() {
-        return "Comprador{" + "dni=" + dni + ", nombre=" + nombre + ", password=" + password + ", medioDePago=" + medioDePago + ", fechaNac=" + fechaNac + '}';
+        return  " nombre= " + nombre + "DNI= " + dni;
     }
     
     
