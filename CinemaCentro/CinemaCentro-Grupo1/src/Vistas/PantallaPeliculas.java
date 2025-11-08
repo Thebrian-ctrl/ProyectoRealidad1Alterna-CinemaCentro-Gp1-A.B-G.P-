@@ -236,6 +236,41 @@ public class PantallaPeliculas extends javax.swing.JInternalFrame {
         
         try {
             
+               if(jtfTitulo.getText().trim().isEmpty() || jtfDirector.getText().trim().isEmpty() || jtfGenero.getText().trim().isEmpty() ||
+                       jtfOrigen.getText().trim().isEmpty() || jtfActores.getText().trim().isEmpty()){
+                          JOptionPane.showMessageDialog(this, "Por favor rellene todos los campos");
+                          return;
+               }
+               if(jdchooseEstreno == null){
+                   JOptionPane.showMessageDialog(this, "Por favor seleccione una fecha de estreno");
+                   return;
+               }
+               if (this.rutaImagenSelec == null || this.rutaImagenSelec.trim().isEmpty()) {
+                   JOptionPane.showMessageDialog(this, "Por favor seleccione una imagen de cartelera");
+                return;
+            }
+            
+               if(!jtfDirector.getText().matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")){
+                   JOptionPane.showMessageDialog(this, "El nombre del director solo puede contener texto");
+                   jtfDirector.requestFocus();
+                   return;
+               }
+               
+               if(!jtfActores.getText().matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")){
+                   JOptionPane.showMessageDialog(this, "El nombre de los actores solo puede contener texto");
+                   jtfActores.requestFocus();
+                   return;
+               }
+               
+               if(!jtfGenero.getText().matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")){
+                   JOptionPane.showMessageDialog(this, "El genero solo puede contener texto");
+                   jtfGenero.requestFocus();
+                   return;
+               }
+               if(!jtfOrigen.getText().matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")){
+                   JOptionPane.showMessageDialog(this, "El origen solo puede contener texto");
+               }
+            
             String titulo = jtfTitulo.getText();
             String director = jtfDirector.getText();
             String genero = jtfGenero.getText();
@@ -252,6 +287,7 @@ public class PantallaPeliculas extends javax.swing.JInternalFrame {
             peliData.guardarPelicula(peli);
                        
             this.rutaImagenSelec = null;
+            limpiarCampos();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "ERROR al guardar la pelicula: " + e.getMessage());
         }
@@ -298,6 +334,12 @@ public class PantallaPeliculas extends javax.swing.JInternalFrame {
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         // TODO add your handling code here:
         try{
+         
+            if(jtfTitulo.getText().trim().isEmpty()){
+                JOptionPane.showMessageDialog(this, "Debe ingresar el nombre de la pelicula para buscar sus datos");
+            }
+            
+            
         String peli = jtfTitulo.getText();
         
        Pelicula pelicula = peliData.buscarPelicula(peli);
@@ -309,6 +351,24 @@ public class PantallaPeliculas extends javax.swing.JInternalFrame {
             jtfActores.setText(pelicula.getActores());
             jdchooseEstreno.setDate(java.sql.Date.valueOf(pelicula.getEstreno()));
             jRadioButtonCartelera.setSelected(pelicula.isCartelera());
+            
+            String rutaImagen = pelicula.getRutaImagen();
+            
+            if (rutaImagen != null && !rutaImagen.isEmpty()){
+                try{
+                    ImageIcon icono = new ImageIcon(rutaImagen);
+                    
+                    Image img = icono.getImage().getScaledInstance(jLabelImagen.getWidth(), jLabelImagen.getHeight(), Image.SCALE_SMOOTH);
+                
+                    jLabelImagen.setIcon(new ImageIcon(img));
+                }catch(Exception e){
+                    jLabelImagen.setIcon(null);
+                    jLabelImagen.setText("Error al cargar la imagen");
+                }
+            } else {
+                jLabelImagen.setIcon(null);
+                jLabelImagen.setText("Pelicula sin imagen");
+            }
             
         }else{
             JOptionPane.showMessageDialog(this, "No se encontro pelicula con ese nombre");
@@ -322,6 +382,13 @@ public class PantallaPeliculas extends javax.swing.JInternalFrame {
     private void jbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarActionPerformed
         // TODO add your handling code here:
       try{  
+          
+          if(jtfTitulo.getText().trim().isEmpty() || jtfDirector.getText().trim().isEmpty() || jtfGenero.getText().trim().isEmpty() ||
+                       jtfOrigen.getText().trim().isEmpty() || jtfActores.getText().trim().isEmpty()){
+                          JOptionPane.showMessageDialog(this, "Por favor rellene todos los campos");
+                          return;
+               }
+          
      
         String titulo = jtfTitulo.getText();
         
@@ -381,4 +448,16 @@ public class PantallaPeliculas extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtfTitulo;
     private javax.swing.JLabel labelTitulo;
     // End of variables declaration//GEN-END:variables
+
+    private void limpiarCampos(){
+        jtfTitulo.setText("");
+        jtfDirector.setText("");
+        jtfGenero.setText("");
+        jtfOrigen.setText("");
+        jtfActores.setText("");
+        jdchooseEstreno.setDate(null);
+        jRadioButtonCartelera.setSelected(false);
+        jLabelImagen.setIcon(null);
+    }
+
 }
