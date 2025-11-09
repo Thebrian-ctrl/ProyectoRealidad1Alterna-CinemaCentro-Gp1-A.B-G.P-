@@ -4,6 +4,11 @@
  */
 package Vistas;
 
+import VistaUsuario.PaginaPrincipal;
+
+
+
+
 /**
  *
  * @author franco
@@ -16,7 +21,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
      * Creates new form PantallaPrincipal
      */
     public PantallaPrincipal() {
-        initComponents();
+        initComponents();       
     }
 
     /**
@@ -28,12 +33,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
-        btnIniciarSesion = new javax.swing.JButton();
-        btnAdministrar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        desktopConFondo2 = new Vistas.DesktopConFondo();
+        jButtonInicioSesion = new javax.swing.JButton();
+        jTextFieldDNI = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jButtonRegistrarse = new javax.swing.JButton();
+        jButtonRegistro = new javax.swing.JButton();
+        jpContraseña = new javax.swing.JPasswordField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jmenuBar = new javax.swing.JMenuBar();
         jmPeliculas = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -44,78 +51,49 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnIniciarSesion.setText("Iniciar sesion");
-        btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
+        jButtonInicioSesion.setText("Iniciar Sesion");
+        jButtonInicioSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIniciarSesionActionPerformed(evt);
+                jButtonInicioSesionActionPerformed(evt);
             }
         });
+        desktopConFondo2.add(jButtonInicioSesion);
+        jButtonInicioSesion.setBounds(730, 380, 180, 50);
 
-        btnAdministrar.setText("Administración");
-        btnAdministrar.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldDNI.setForeground(new java.awt.Color(153, 153, 153));
+        jTextFieldDNI.setText("Ingrese su DNI");
+        desktopConFondo2.add(jTextFieldDNI);
+        jTextFieldDNI.setBounds(730, 250, 180, 30);
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("¿No tiene cuenta? ¡Registrate!");
+        desktopConFondo2.add(jLabel1);
+        jLabel1.setBounds(740, 450, 180, 16);
+
+        jButtonRegistro.setText("Registrarse");
+        jButtonRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdministrarActionPerformed(evt);
+                jButtonRegistroActionPerformed(evt);
             }
         });
+        desktopConFondo2.add(jButtonRegistro);
+        jButtonRegistro.setBounds(730, 480, 180, 50);
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jpContraseña.setText("jPasswordField1");
+        desktopConFondo2.add(jpContraseña);
+        jpContraseña.setBounds(730, 320, 180, 30);
 
-        jLabel1.setText("¿No tienes cuenta? Resgistrate gratis");
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Ingrese su DNI");
+        desktopConFondo2.add(jLabel2);
+        jLabel2.setBounds(770, 200, 90, 30);
 
-        jButtonRegistrarse.setText("Registrarse");
-        jButtonRegistrarse.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRegistrarseActionPerformed(evt);
-            }
-        });
-
-        jDesktopPane1.setLayer(btnIniciarSesion, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(btnAdministrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButtonRegistrarse, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addGap(60, 547, Short.MAX_VALUE)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                        .addComponent(btnAdministrar)
-                        .addGap(14, 14, 14))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(307, 307, 307))))
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnIniciarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonRegistrarse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap(364, Short.MAX_VALUE)
-                .addComponent(btnIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonRegistrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addGap(51, 51, 51)
-                .addComponent(btnAdministrar)
-                .addGap(24, 24, 24))
-        );
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Contraseña:");
+        desktopConFondo2.add(jLabel3);
+        jLabel3.setBounds(780, 290, 70, 16);
 
         jmenuBar.setEnabled(false);
 
@@ -165,31 +143,21 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(desktopConFondo2, javax.swing.GroupLayout.DEFAULT_SIZE, 1036, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(desktopConFondo2, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-      
-      
-    }//GEN-LAST:event_btnIniciarSesionActionPerformed
-
-    private void btnAdministrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministrarActionPerformed
-        // TODO add your handling code here:
-        jmenuBar.setEnabled(true);
-    }//GEN-LAST:event_btnAdministrarActionPerformed
-
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         PantallaPeliculas pelis = new PantallaPeliculas();
         pelis.setVisible(true);
-        jDesktopPane1.add(pelis);
+        //jDescritorio.add(pelis);
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -197,35 +165,37 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         ListarPeliculas list = new ListarPeliculas();
         list.setVisible(true);
-        jDesktopPane1.add(list);
+        desktopConFondo2.add(list);
     }//GEN-LAST:event_menuListaPelisActionPerformed
 
     private void jMenuFuncionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuFuncionActionPerformed
         // TODO add your handling code here:
         VistaFuncion fun = new VistaFuncion();
         fun.setVisible(true);
-        jDesktopPane1.add(fun);        
+        //jDescritorio.add(fun);        
     }//GEN-LAST:event_jMenuFuncionActionPerformed
 
     private void jMenuSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSalaActionPerformed
         // TODO add your handling code here:
         vistaSala sala = new vistaSala();
         sala.setVisible(true);
-        jDesktopPane1.add(sala);
+        //jDescritorio.add(sala);
     }//GEN-LAST:event_jMenuSalaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistroActionPerformed
         // TODO add your handling code here:
-        VistaDetalleTicket ticket = new VistaDetalleTicket();
-        ticket.setVisible(true);
-        ticket.setLocationRelativeTo(this);
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+        PantallaRegistro registro = new PantallaRegistro();
+        registro.setVisible(true);
+        desktopConFondo2.add(registro);
+    }//GEN-LAST:event_jButtonRegistroActionPerformed
 
-    private void jButtonRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarseActionPerformed
+    private void jButtonInicioSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInicioSesionActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jButtonRegistrarseActionPerformed
+        PaginaPrincipal inicio = new PaginaPrincipal();
+        inicio.setVisible(true);
+        desktopConFondo2.add(inicio);       
+       
+    }//GEN-LAST:event_jButtonInicioSesionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,18 +223,20 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdministrar;
-    private javax.swing.JButton btnIniciarSesion;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButtonRegistrarse;
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private Vistas.DesktopConFondo desktopConFondo2;
+    private javax.swing.JButton jButtonInicioSesion;
+    private javax.swing.JButton jButtonRegistro;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuItem jMenuFuncion;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuSala;
+    private javax.swing.JTextField jTextFieldDNI;
     private javax.swing.JMenu jmFunciones;
     private javax.swing.JMenu jmPeliculas;
     private javax.swing.JMenuBar jmenuBar;
+    private javax.swing.JPasswordField jpContraseña;
     private javax.swing.JMenuItem menuListaPelis;
     // End of variables declaration//GEN-END:variables
 }
