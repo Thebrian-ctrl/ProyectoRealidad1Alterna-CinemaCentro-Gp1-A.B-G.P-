@@ -313,4 +313,38 @@ public class FuncionData {
         }
     
     }
+    
+    public Funcion buscarFuncionPorId(int idFuncion) {
+    String query = "SELECT * FROM funcion WHERE idFuncion = ?";
+    Funcion funcion = null;
+
+    try {
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setInt(1, idFuncion);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            funcion = new Funcion();
+            funcion.setIdFuncion(idFuncion);
+            funcion.setHoraInicio(rs.getTimestamp("horarioInicio").toLocalDateTime());
+            funcion.setHoraFin(rs.getTimestamp("horarioFin").toLocalDateTime());
+            funcion.setIdioma(rs.getString("idioma"));
+            funcion.setEs3d(rs.getBoolean("es3d"));
+            funcion.setSubtitulado(rs.getBoolean("subtitulado"));
+            funcion.setPrecio(rs.getDouble("precio"));
+
+            // Cargar la película asociada
+            PeliculaData peliculaData = new PeliculaData();
+            Pelicula pelicula = peliculaData.buscarPeliculaPorId(rs.getInt("idPelicula"));
+            funcion.setPelicula(pelicula);
+        }
+
+        rs.close();
+        ps.close();
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error al buscar la función: " + e.getMessage());
+    }
+
+    return funcion;
+}
 }

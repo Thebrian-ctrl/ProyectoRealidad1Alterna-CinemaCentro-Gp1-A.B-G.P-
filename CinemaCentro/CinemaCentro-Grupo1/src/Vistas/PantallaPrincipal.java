@@ -48,6 +48,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jmFunciones = new javax.swing.JMenu();
         jMenuFuncion = new javax.swing.JMenuItem();
         jMenuSala = new javax.swing.JMenuItem();
+        jMenuItemTicket = new javax.swing.JMenuItem();
+        jMenuItemGestionTicket = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,6 +137,22 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jmFunciones.add(jMenuSala);
 
+        jMenuItemTicket.setText("ticket");
+        jMenuItemTicket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemTicketActionPerformed(evt);
+            }
+        });
+        jmFunciones.add(jMenuItemTicket);
+
+        jMenuItemGestionTicket.setText("Gestion Ticket");
+        jMenuItemGestionTicket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemGestionTicketActionPerformed(evt);
+            }
+        });
+        jmFunciones.add(jMenuItemGestionTicket);
+
         jmenuBar.add(jmFunciones);
 
         setJMenuBar(jmenuBar);
@@ -172,14 +190,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         VistaFuncion fun = new VistaFuncion();
         fun.setVisible(true);
-        //jDescritorio.add(fun);        
+        desktopConFondo2.add(fun);        
     }//GEN-LAST:event_jMenuFuncionActionPerformed
 
     private void jMenuSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSalaActionPerformed
         // TODO add your handling code here:
         vistaSala sala = new vistaSala();
         sala.setVisible(true);
-        //jDescritorio.add(sala);
+        desktopConFondo2.add(sala);
     }//GEN-LAST:event_jMenuSalaActionPerformed
 
     private void jButtonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistroActionPerformed
@@ -196,6 +214,18 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         desktopConFondo2.add(inicio);       
        
     }//GEN-LAST:event_jButtonInicioSesionActionPerformed
+
+    private void jMenuItemTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTicketActionPerformed
+      VistaDetalleTicket ticket = new VistaDetalleTicket();
+      ticket.setVisible(true);
+      
+    }//GEN-LAST:event_jMenuItemTicketActionPerformed
+
+    private void jMenuItemGestionTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemGestionTicketActionPerformed
+        GestionTicket gestion = new GestionTicket();
+        gestion.setVisible(true);
+        desktopConFondo2.add(gestion);
+    }//GEN-LAST:event_jMenuItemGestionTicketActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,6 +261,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuItem jMenuFuncion;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItemGestionTicket;
+    private javax.swing.JMenuItem jMenuItemTicket;
     private javax.swing.JMenuItem jMenuSala;
     private javax.swing.JTextField jTextFieldDNI;
     private javax.swing.JMenu jmFunciones;

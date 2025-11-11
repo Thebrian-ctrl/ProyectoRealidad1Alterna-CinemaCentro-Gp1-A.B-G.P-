@@ -189,6 +189,37 @@ public class CompradorData {
         }
         return compradores;
     }
+    
+    
+    public Comprador buscarCompradorPorId(int idComprador) {
+    Comprador comprador = null;
+    String sql = "SELECT * FROM comprador WHERE idComprador = ?";
+
+    try {
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, idComprador);
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            comprador = new Comprador();
+            comprador.setIdComprador(rs.getInt("idComprador"));
+            comprador.setDni(rs.getInt("dni"));
+            comprador.setNombre(rs.getString("nombre"));
+            comprador.setPassword(rs.getString("password"));
+            comprador.setMedioDePago(rs.getString("medioDePago"));
+            comprador.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
+        }
+
+        rs.close();
+        ps.close();
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error al buscar comprador por ID: " + e.getMessage());
+    }
+
+    return comprador;
+}
   
   
   

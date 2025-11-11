@@ -216,10 +216,12 @@ public class TicketCompraData {
     
     public List <TicketCompra> ListarTicketsPorPelicula (int idPelicula ) {
         List <TicketCompra> tickets = new ArrayList <> ();
-        String query = "SELECT DISTINCT t. * FROM ticketcompra t"
-                + "INNER JOIN detalleticket d ON t.idDetalleTicket = d.idDetalleTicket"
-                + "INNER JOIN funcion f ON d.idFuncion = f.idFuncion "
-                + "WHERE f.idPelicula= ?";
+         CompradorData compradorData = new CompradorData();
+         DetalleTicketData detalleData = new DetalleTicketData();
+        String query = "SELECT DISTINCT t.* FROM ticket t "
+            + "INNER JOIN detalleticket d ON t.idDetalleTicket = d.idDetalleTicket "
+            + "INNER JOIN funcion f ON d.idFuncion = f.idFuncion "
+            + "WHERE f.idPelicula = ?";
         
         try {
             PreparedStatement ps = conn.prepareStatement (query);
@@ -235,15 +237,13 @@ public class TicketCompraData {
                 ticket.setMonto(rs.getDouble("monto"));
                 
                 Comprador comprador = new Comprador();
-                comprador.setIdComprador(rs.getInt("idComprador"));
+                comprador = compradorData.buscarCompradorPorId(rs.getInt("idComprador"));
+                
+                
                 ticket.setComprador(comprador);
                 
-                int idDetalle = rs.getInt("idDetalleTicket");
-                if (!rs.wasNull()) {
-                    DetalleTicket detalle = new DetalleTicket();
-                    detalle.setIdDetalleTicket(idDetalle);
-                    ticket.setDetalleticket(detalle);
-                }
+                DetalleTicket detalle = detalleData.buscarDetalleTicket(rs.getInt("idDetalleTicket"));
+                ticket.setDetalleticket(detalle);
                 tickets.add(ticket);
              }
              rs.close();

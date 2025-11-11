@@ -135,16 +135,21 @@ public class DetalleTicketData {
                 detalle.setIdDetalleTicket(rs.getInt("idDetalleTicket"));
                 //detalle.setCantidad(rs.getInt("cantidad"));
                 detalle.setSubtotal(rs.getDouble("subtotal"));
-                Funcion funcion = new Funcion();
-                funcion.setIdFuncion(rs.getInt("idFuncion"));
+                
+                
+                FuncionData funcionData= new FuncionData();
+                Funcion funcion = funcionData.buscarFuncionPorId(rs.getInt("idFuncion"));
+               // funcion.setIdFuncion(rs.getInt("idFuncion"));
                 detalle.setFuncion(funcion);
 
                 Lugar lugar = new Lugar();
                 lugar.setIdLugar(rs.getInt("idLugar"));
+                detalle.setLugar(lugar);
                 
                 Lugar lugar2 = new Lugar();
                 
                 lugar2.setIdLugar(rs.getInt("cantidad"));
+                detalle.setCantidad(lugar2);
                 
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontro el detalleticket");

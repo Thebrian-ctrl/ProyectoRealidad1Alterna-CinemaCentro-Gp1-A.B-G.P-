@@ -7,6 +7,7 @@ package Modelo;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -137,10 +138,16 @@ public class Funcion {
 
     @Override
     public String toString() {
-        return 
-           ", pelicula=" + (pelicula != null ? pelicula.getTitulo() : "null") +
-           '}';
-    }
+    String sub = subtitulado ? "Subtitulada" : "Doblada";
+    String tresD = es3d ? "3D" : "2D";
+
+    DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
+    return pelicula.getTitulo() + " | " 
+            +"sala"+ salaProyeccion.getNroSala() + " | "
+            + horaInicio.format(formato) + " | "
+            + sub + " | " + tresD;
+}
 
     
     
