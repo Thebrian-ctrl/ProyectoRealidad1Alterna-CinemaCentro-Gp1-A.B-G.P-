@@ -23,6 +23,8 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -84,30 +86,18 @@ public class VistaDetalleTicket extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelButacas = new javax.swing.JPanel();
         jComboBoxFuncion = new javax.swing.JComboBox<>();
         jComboBoxCompradores = new javax.swing.JComboBox<>();
         jButtonCompra = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabelPrecio = new javax.swing.JLabel();
         jLabelCantidad = new javax.swing.JLabel();
         jLabelTotal = new javax.swing.JLabel();
+        jLabelPrecio = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanelButacas = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanelButacas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        javax.swing.GroupLayout jPanelButacasLayout = new javax.swing.GroupLayout(jPanelButacas);
-        jPanelButacas.setLayout(jPanelButacasLayout);
-        jPanelButacasLayout.setHorizontalGroup(
-            jPanelButacasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 799, Short.MAX_VALUE)
-        );
-        jPanelButacasLayout.setVerticalGroup(
-            jPanelButacasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 442, Short.MAX_VALUE)
-        );
 
         jComboBoxFuncion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,11 +116,27 @@ public class VistaDetalleTicket extends javax.swing.JFrame {
 
         jLabel2.setText("Cliente:");
 
-        jLabelPrecio.setText("*");
-
         jLabelCantidad.setText("*");
 
         jLabelTotal.setText("*");
+
+        jLabelPrecio.setText("*");
+
+        jPanelButacas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanelButacas.setMaximumSize(new java.awt.Dimension(600, 400));
+
+        javax.swing.GroupLayout jPanelButacasLayout = new javax.swing.GroupLayout(jPanelButacas);
+        jPanelButacas.setLayout(jPanelButacasLayout);
+        jPanelButacasLayout.setHorizontalGroup(
+            jPanelButacasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 706, Short.MAX_VALUE)
+        );
+        jPanelButacasLayout.setVerticalGroup(
+            jPanelButacasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 448, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setViewportView(jPanelButacas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -140,8 +146,17 @@ public class VistaDetalleTicket extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(872, 872, 872)
-                        .addComponent(jButtonCompra))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(83, 83, 83)
+                                .addComponent(jButtonCompra))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(58, 58, 58)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
@@ -149,17 +164,8 @@ public class VistaDetalleTicket extends javax.swing.JFrame {
                         .addGap(64, 64, 64)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxCompradores, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(86, 86, 86)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(127, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelButacas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(163, 163, 163))
+                            .addComponent(jComboBoxCompradores, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,24 +173,26 @@ public class VistaDetalleTicket extends javax.swing.JFrame {
                 .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabelPrecio))
-                .addGap(18, 18, 18)
-                .addComponent(jLabelCantidad)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxFuncion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxCompradores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBoxFuncion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxCompradores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(44, 44, 44)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(133, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(jLabelCantidad)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabelTotal)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
-                .addComponent(jPanelButacas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
-                .addComponent(jButtonCompra)
-                .addGap(43, 43, 43))
+                        .addComponent(jLabelPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelTotal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonCompra)
+                        .addGap(141, 141, 141))))
         );
 
         pack();
@@ -196,7 +204,22 @@ public class VistaDetalleTicket extends javax.swing.JFrame {
         Funcion funcionselec = (Funcion) jComboBoxFuncion.getSelectedItem();
         
         if(funcionselec != null){
+            
+            lugaresDisponibles.clear();
+            
+            jLabelCantidad.setText("Cantidad: 0");
+            jLabelTotal.setText("Total: $0.00");
+            
             crearButacas(funcionselec.getIdFuncion());
+            
+            // quiero ver si funciona agregar el precio
+            jLabelPrecio.setText(String.format("Precio: $%.2f", funcionselec.getPrecio()));
+            
+            
+            //iniciamos los label
+
+            jLabelCantidad.setText("Cantidad: 0");
+            jLabelTotal.setText("Total: $0.00");
         }
         
     }//GEN-LAST:event_jComboBoxFuncionActionPerformed
@@ -251,12 +274,55 @@ public class VistaDetalleTicket extends javax.swing.JFrame {
         
         ticketCompraData.guardarTicketCompra(ticket);
         
-        JOptionPane.showMessageDialog(this, "Ticker creado" + " total: " + total);
+        DetalleTicket det = ticket.getDetalleticket();
         
-        
-        lugaresDisponibles.clear();
-        
-        crearButacas(funcionselec.getIdFuncion());
+        String butacas = det.getLugar().getFila() + String.valueOf(det.getLugar().getNum());
+        if (det.getCantidad() != null) {
+        butacas += ", " + det.getCantidad().getFila() + det.getCantidad().getNum();
+        }
+
+    String mensaje = "===== CINEMACENTRO =====\n\n"
+            + "TICKET DE COMPRA\n"
+            + "-----------------------------\n"
+            + "Comprador: " + ticket.getComprador().getNombre() + "\n"
+            + "Película: " + det.getFuncion().getPelicula().getTitulo() + "\n"
+            + "Sala: " + det.getFuncion().getSalaProyeccion().getNroSala() + "\n"
+            + "Horario: " + det.getFuncion().getHoraInicio() + "\n"
+            + "Butacas: " + butacas + "\n"
+            + "-----------------------------\n"
+            + "Total: $" + ticket.getMonto() + "\n"
+            + "Fecha compra: " + ticket.getFechaCompra() + "\n"
+            + "-----------------------------\n\n"
+            + " ¡Gracias por elegir Cinemacentro!";
+
+    JTextArea textArea = new JTextArea(mensaje);
+    textArea.setEditable(false);
+    textArea.setFont(new java.awt.Font("Monospaced", java.awt.Font.PLAIN, 14));
+
+    JScrollPane scroll = new JScrollPane(textArea);
+    scroll.setPreferredSize(new java.awt.Dimension(350, 300));
+
+    int opcion = JOptionPane.showOptionDialog(
+            this,
+            scroll,
+            "Ticket generado",
+            JOptionPane.DEFAULT_OPTION,
+            JOptionPane.INFORMATION_MESSAGE,
+            null,
+            new Object[]{"Imprimir", "Cerrar"},
+            "Imprimir"
+    );
+
+    if (opcion == 0) {
+        JOptionPane.showMessageDialog(this, "Ticket impreso con éxito ");
+    }
+
+    ///limpiamos
+    lugaresDisponibles.clear();
+    crearButacas(funcionselec.getIdFuncion());
+    jLabelCantidad.setText("Cantidad: 0");
+    jLabelPrecio.setText("Precio: $0.00");
+    jLabelTotal.setText("Total: $0.00");
     }//GEN-LAST:event_jButtonCompraActionPerformed
 
     /**
@@ -274,6 +340,7 @@ public class VistaDetalleTicket extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelPrecio;
     private javax.swing.JLabel jLabelTotal;
     private javax.swing.JPanel jPanelButacas;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
     private void crearButacas(int idFuncion){
@@ -306,7 +373,15 @@ public class VistaDetalleTicket extends javax.swing.JFrame {
                    }else{
                        JOptionPane.showMessageDialog(this, "Solo puede seleccionar 2 asientos");
                    }
-               }});
+                   
+                     
+               }
+                        jLabelCantidad.setText("Cantidad: " + lugaresDisponibles.size());
+                        double precio = funcionData.buscarFuncion(idFuncion).getPrecio();
+                        jLabelPrecio.setText("Precio: $" + precio);
+                        double total = precio * lugaresDisponibles.size();
+                        jLabelTotal.setText(String.format("Total: $%.2f", total));
+               });
            } jPanelButacas.add(boton);
         } jPanelButacas.revalidate();
           jPanelButacas.repaint();
