@@ -8,6 +8,7 @@ import Modelo.Comprador;
 import Persistencia.CompradorData;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Date;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
@@ -20,7 +21,7 @@ public class PantallaRegistro extends javax.swing.JInternalFrame {
     /**
      * Creates new form PantallaRegistro
      */
-   
+   CompradorData compradorData = new CompradorData();
     
     public PantallaRegistro() {
         initComponents();
@@ -50,6 +51,8 @@ public class PantallaRegistro extends javax.swing.JInternalFrame {
         jBIniciar = new javax.swing.JButton();
         jBatras = new javax.swing.JButton();
         jComboMedioDePago = new javax.swing.JComboBox<>();
+        jbuttonActualizar = new javax.swing.JButton();
+        jButtonBuscar = new javax.swing.JButton();
 
         jLabel1.setText("Registrarse");
 
@@ -65,7 +68,7 @@ public class PantallaRegistro extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Medio de pago:");
 
-        jBIniciar.setText("Iniciar Sesion");
+        jBIniciar.setText("Registrarse");
         jBIniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBIniciarActionPerformed(evt);
@@ -79,36 +82,57 @@ public class PantallaRegistro extends javax.swing.JInternalFrame {
             }
         });
 
+        jbuttonActualizar.setText("Actualizar");
+        jbuttonActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbuttonActualizarActionPerformed(evt);
+            }
+        });
+
+        jButtonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lupa.png"))); // NOI18N
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(114, 114, 114)
+                .addComponent(jLabel1)
+                .addContainerGap(251, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
+                        .addComponent(jBatras)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBIniciar)
+                        .addGap(28, 28, 28))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel4)
+                            .addComponent(jDateNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jComboMedioDePago, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jbuttonActualizar)
+                                .addComponent(jContrasenia, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
                             .addComponent(jLabel2)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextDni, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-                                .addComponent(jTextNombre, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jDateNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboMedioDePago, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(jLabel1)))
-                .addContainerGap(115, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jBatras)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBIniciar)
-                .addGap(28, 28, 28))
+                                .addComponent(jTextDni, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,12 +143,17 @@ public class PantallaRegistro extends javax.swing.JInternalFrame {
                 .addComponent(jLabel3)
                 .addGap(7, 7, 7)
                 .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jDateNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -133,12 +162,13 @@ public class PantallaRegistro extends javax.swing.JInternalFrame {
                 .addComponent(jContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addComponent(jComboMedioDePago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jComboMedioDePago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBIniciar)
-                    .addComponent(jBatras))
+                    .addComponent(jBatras)
+                    .addComponent(jbuttonActualizar))
                 .addGap(17, 17, 17))
         );
 
@@ -198,10 +228,67 @@ public class PantallaRegistro extends javax.swing.JInternalFrame {
          
     }//GEN-LAST:event_jBatrasActionPerformed
 
+    private void jbuttonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbuttonActualizarActionPerformed
+        // TODO add your handling code here:
+        
+        try {
+            
+            String nombre = jTextNombre.getText();
+            int dni = Integer.parseInt(jTextDni.getText());
+            Date fecha = jDateNacimiento.getDate();
+            LocalDate fechaNacimiento = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            String contrasena = new String (jContrasenia.getPassword());
+            String medioPago = (String) jComboMedioDePago.getSelectedItem();
+            
+            Comprador c = compradorData.buscarComprador(dni);
+            
+                if(c == null){
+                    JOptionPane.showMessageDialog(this, "No se encontro comprador con ese ID");
+                }
+                
+                c.setDni(dni);
+                c.setNombre(nombre);
+                c.setFechaNac(fechaNacimiento);
+                c.setPassword(contrasena);
+                c.setMedioDePago(medioPago);
+                
+                compradorData.actualizarComprador(c);
+            
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al actualizar comprador");
+        }
+        
+    }//GEN-LAST:event_jbuttonActualizarActionPerformed
+
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+        // TODO add your handling code here:
+        try{
+        
+       int dni = Integer.parseInt(jTextDni.getText());
+        
+       Comprador c = compradorData.buscarComprador(dni);
+       
+       if(c != null){
+           jTextNombre.setText(c.getNombre());
+           jTextDni.setText(String.valueOf(c.getDni()));
+           jDateNacimiento.setDate(java.sql.Date.valueOf(c.getFechaNac()));
+           jContrasenia.setText(c.getPassword());
+           jComboMedioDePago.setSelectedItem(c.getMedioDePago());
+       }else{
+           JOptionPane.showMessageDialog(this, "No se encontro comprador con ese dni");
+       }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error al buscar comprador");
+        }
+       
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBIniciar;
     private javax.swing.JButton jBatras;
+    private javax.swing.JButton jButtonBuscar;
     private javax.swing.JComboBox<String> jComboMedioDePago;
     private javax.swing.JPasswordField jContrasenia;
     private com.toedter.calendar.JDateChooser jDateNacimiento;
@@ -213,6 +300,7 @@ public class PantallaRegistro extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField jTextDni;
     private javax.swing.JTextField jTextNombre;
+    private javax.swing.JButton jbuttonActualizar;
     // End of variables declaration//GEN-END:variables
 
 
