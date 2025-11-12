@@ -5,10 +5,27 @@
  */
 package Vistas;
 
+import Modelo.Comprador;
+import Modelo.DetalleTicket;
+import Modelo.Funcion;
+import Modelo.Lugar;
 import Modelo.Pelicula;
 import Modelo.TicketCompra;
+import Persistencia.CompradorData;
+import Persistencia.DetalleTicketData;
+import Persistencia.FuncionData;
+import Persistencia.LugarData;
 import Persistencia.PeliculaData;
 import Persistencia.TicketCompraData;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,12 +42,24 @@ public class GestionTicket extends javax.swing.JInternalFrame {
     
     PeliculaData peliculaData = new PeliculaData();
     DefaultTableModel modelo = new DefaultTableModel();
-    
+    DetalleTicket detalleTicket= new DetalleTicket ();
+    FuncionData funcionData = new FuncionData();
+    CompradorData compradorData = new CompradorData();
+    DetalleTicketData detalleData = new DetalleTicketData();
+    LugarData lugarData = new LugarData();
     TicketCompraData ticketCompraData = new TicketCompraData();
+    private List<Lugar> lugaresDisponibles = new ArrayList<>();
+  
+    
+    
     public GestionTicket() {
         initComponents();
         cargarPeliculas();
         armarCabecera();
+        cargarComboFunciones();
+        cargarComboCompradores();
+        limpiarCampos();
+       
     }
 
     /**
@@ -51,10 +80,21 @@ public class GestionTicket extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jButtoPorFecha = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButtonCerrar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextId = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jComboBoxFuncion = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        jComboBoxCompradores = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanelButacas = new javax.swing.JPanel();
+        jLabelCantidad = new javax.swing.JLabel();
+        jLabelPrecio = new javax.swing.JLabel();
+        jLabelTotal = new javax.swing.JLabel();
+        jButtonActualizar = new javax.swing.JButton();
+        jButtonEliminar = new javax.swing.JButton();
 
         jTableTickets.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -67,6 +107,11 @@ public class GestionTicket extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableTickets.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableTicketsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableTickets);
 
         jLabel1.setText("Gestion Tickets");
@@ -89,33 +134,134 @@ public class GestionTicket extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setText("cerrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCerrar.setText("cerrar");
+        jButtonCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonCerrarActionPerformed(evt);
             }
         });
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         jLabel4.setText("id");
 
-        jTextField1.setText("jTextField1");
+        jLabel5.setText("Funcion:");
 
-        jLabel5.setText("jLabel5");
+        jComboBoxFuncion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxFuncionActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Comprador:");
+
+        javax.swing.GroupLayout jPanelButacasLayout = new javax.swing.GroupLayout(jPanelButacas);
+        jPanelButacas.setLayout(jPanelButacasLayout);
+        jPanelButacasLayout.setHorizontalGroup(
+            jPanelButacasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 499, Short.MAX_VALUE)
+        );
+        jPanelButacasLayout.setVerticalGroup(
+            jPanelButacasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 256, Short.MAX_VALUE)
+        );
+
+        jScrollPane2.setViewportView(jPanelButacas);
+
+        jLabelCantidad.setText("*");
+
+        jLabelPrecio.setText("*");
+
+        jLabelTotal.setText("*");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextId))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxFuncion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxCompradores, 0, 162, Short.MAX_VALUE)
+                            .addComponent(jLabelTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jTextId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jComboBoxFuncion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jComboBoxCompradores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabelCantidad)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelPrecio)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelTotal))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+
+        jButtonActualizar.setText("Actualizar");
+        jButtonActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonActualizarActionPerformed(evt);
+            }
+        });
+
+        jButtonEliminar.setText("Eliminar");
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(209, 209, 209)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(209, 209, 209)
+                                .addComponent(jLabel1))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(16, 16, 16)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jButtoPorFecha)
@@ -132,27 +278,24 @@ public class GestionTicket extends javax.swing.JInternalFrame {
                                                 .addComponent(jLabel3))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(71, 71, 71)
-                                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(32, 32, 32)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5))))
+                                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(91, 91, 91)
+                .addComponent(jButtonActualizar)
+                .addGap(70, 70, 70)
+                .addComponent(jButtonEliminar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 255, Short.MAX_VALUE)
+                .addComponent(jButtonCerrar)
+                .addGap(189, 189, 189))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(1, 1, 1)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
@@ -167,13 +310,14 @@ public class GestionTicket extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButtoPorFecha))
-                .addGap(32, 32, 32)
+                .addGap(26, 26, 26)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addContainerGap(246, Short.MAX_VALUE))
+                    .addComponent(jButtonActualizar)
+                    .addComponent(jButtonEliminar)
+                    .addComponent(jButtonCerrar))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -222,18 +366,208 @@ public class GestionTicket extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonPorPeliculaActionPerformed
 
     private void jButtoPorFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtoPorFechaActionPerformed
-        // TODO add your handling code here:
+        // limpiamos tabla  
+        modelo.setRowCount(0);
+        
+       // sacamos la fecha q esta en el chooser
+                
+        LocalDate fechaSeleccionada =  jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        
+        // traemos los tickets de esa fecha 
+        for (TicketCompra t : ticketCompraData.listarTicketsPorFecha(fechaSeleccionada)) {
+        String tituloPelicula = "Sin Película";
+        if (t.getDetalleticket() != null &&
+            t.getDetalleticket().getFuncion() != null &&
+            t.getDetalleticket().getFuncion().getPelicula() != null) {
+            tituloPelicula = t.getDetalleticket().getFuncion().getPelicula().getTitulo();
+        }
+
+        modelo.addRow(new Object[]{
+            t.getIdTicket(),
+            (t.getComprador() != null) ? t.getComprador().getNombre() : "Sin comprador",
+            tituloPelicula,
+            t.getFechaCompra(),
+            t.getMonto()
+        });
+    }
+        
+        
+        
     }//GEN-LAST:event_jButtoPorFechaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed
        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonCerrarActionPerformed
+
+    private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
+         if (jTextId.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Seleccione un ticket primero");
+        return;
+    }
+
+    int idTicket = Integer.parseInt(jTextId.getText());
+    TicketCompra ticket = ticketCompraData.buscarTickerporId(idTicket);
+    if (ticket == null) {
+        JOptionPane.showMessageDialog(this, "No se encontró el ticket");
+        return;
+    }
+
+    DetalleTicket detalle = ticket.getDetalleticket();
+    if (detalle == null) {
+        JOptionPane.showMessageDialog(this, "No se encontró el detalle del ticket");
+        return;
+    }
+
+    // --- Liberar los lugares antiguos ---
+    Lugar lugarAnt1 = detalle.getLugar();
+    Lugar lugarAnt2 = detalle.getCantidad();
+    if (lugarAnt1 != null) lugarData.darAltaLugar(lugarAnt1.getIdLugar());
+    if (lugarAnt2 != null) lugarData.darAltaLugar(lugarAnt2.getIdLugar());
+
+    // --- Nuevos datos ---
+    Funcion nuevaFuncion = (Funcion) jComboBoxFuncion.getSelectedItem();
+    Comprador nuevoComprador = (Comprador) jComboBoxCompradores.getSelectedItem();
+
+    if (nuevaFuncion == null || nuevoComprador == null) {
+        JOptionPane.showMessageDialog(this, "Seleccione función y comprador válidos");
+        return;
+    }
+
+    if (lugaresDisponibles.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Seleccione al menos un asiento");
+        return;
+    }
+
+    // --- Asignar los nuevos asientos al detalle ---
+    detalle.setFuncion(nuevaFuncion);
+    detalle.setLugar(lugaresDisponibles.get(0));
+    detalle.setCantidad(lugaresDisponibles.size() > 1 ? lugaresDisponibles.get(1) : null);
+    detalle.setSubtotal(nuevaFuncion.getPrecio() * lugaresDisponibles.size());
+
+    // --- Actualizar en la base de datos ---
+    detalleData.actualizarDetalleTicket(detalle);
+
+    // --- Actualizar ticket ---
+    ticket.setMonto(detalle.getSubtotal());
+    ticket.setComprador(nuevoComprador);
+    ticket.setFechaFuncion(nuevaFuncion.getHoraInicio());
+    ticketCompraData.actualizarTicket(ticket);
+
+    // --- Marcar los nuevos lugares como ocupados ---
+    for (Lugar l : lugaresDisponibles) {
+        l.setEstado(false);
+        lugarData.darBajaLugar(l.getIdLugar());
+    }
+
+    // --- Limpiar la interfaz ---
+    JOptionPane.showMessageDialog(this, "Ticket actualizado correctamente");
+    limpiarCampos();  // Esto borra los botones de butacas y resetea todo
+    modelo.setRowCount(0); 
+    
+   
+    }//GEN-LAST:event_jButtonActualizarActionPerformed
+
+    private void jTableTicketsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTicketsMouseClicked
+    
+        int fila = jTableTickets.getSelectedRow();
+            if (fila != -1) {
+                // Columna del id
+        int idTicket = (int) jTableTickets.getValueAt(fila, 0); 
+        TicketCompra ticket = ticketCompraData.buscarTickerporId(idTicket);
+
+        if (ticket != null) {
+            cargarDatosTicketEnFormulario(ticket);
+        }
+    }
+    
+    }//GEN-LAST:event_jTableTicketsMouseClicked
+
+    private void jComboBoxFuncionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxFuncionActionPerformed
+       Funcion funcionSeleccionada = (Funcion) jComboBoxFuncion.getSelectedItem();
+    if (funcionSeleccionada != null) {
+
+        // Verificamos si hay un ticket seleccionado en el jTextId
+        if (!jTextId.getText().isEmpty()) {
+            int idTicket = Integer.parseInt(jTextId.getText());
+            TicketCompra ticket = ticketCompraData.buscarTickerporId(idTicket);
+
+            if (ticket != null && ticket.getDetalleticket() != null) {
+                int idDetalleTicket = ticket.getDetalleticket().getIdDetalleTicket();
+                lugaresDisponibles.clear();
+                crearButacas(funcionSeleccionada.getIdFuncion(), idDetalleTicket);
+
+                // Reiniciar labels de cantidad, precio y total
+                jLabelCantidad.setText("Cantidad: " + lugaresDisponibles.size());
+                jLabelPrecio.setText("Precio: $" + funcionSeleccionada.getPrecio());
+                double total = funcionSeleccionada.getPrecio() * lugaresDisponibles.size();
+                jLabelTotal.setText(String.format("Total: $%.2f", total));
+            } else {
+                // Si no hay detalle del ticket, mostramos solo lugares libres
+                lugaresDisponibles.clear();
+                crearButacas(funcionSeleccionada.getIdFuncion(), -1);
+                jLabelCantidad.setText("Cantidad: 0");
+                jLabelPrecio.setText("Precio: $" + funcionSeleccionada.getPrecio());
+                jLabelTotal.setText("Total: $0.00");
+            }
+        } else {
+            // Si no hay ticket seleccionado, mostramos solo lugares libres
+            lugaresDisponibles.clear();
+            crearButacas(funcionSeleccionada.getIdFuncion(), -1);
+            jLabelCantidad.setText("Cantidad: 0");
+            jLabelPrecio.setText("Precio: $" + funcionSeleccionada.getPrecio());
+            jLabelTotal.setText("Total: $0.00");
+        }
+    }
+    }//GEN-LAST:event_jComboBoxFuncionActionPerformed
+
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+        if (jTextId.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Seleccione un ticket primero");
+        return;
+    }
+
+    int idTicket = Integer.parseInt(jTextId.getText());
+    TicketCompra ticket = ticketCompraData.buscarTickerporId(idTicket);
+    if (ticket == null) {
+        JOptionPane.showMessageDialog(this, "No se encontró el ticket");
+        return;
+    }
+
+    // --- Liberar lugares ocupados ---
+    DetalleTicket detalle = ticket.getDetalleticket();
+    if (detalle != null) {
+        Lugar lugar1 = detalle.getLugar();
+        Lugar lugar2 = detalle.getCantidad(); // segundo asiento (puede ser null)
+
+        if (lugar1 != null) lugarData.darAltaLugar(lugar1.getIdLugar());
+        if (lugar2 != null) lugarData.darAltaLugar(lugar2.getIdLugar());
+
+       
+
+    // --- Eliminar ticket ---
+    ticketCompraData.anularTicket(idTicket);
+     // --- Eliminar detalle ---
+        detalleData.eliminarDetalleTicket(detalle.getIdDetalleTicket());
+    }
+
+    // --- Refrescar interfaz ---
+    JOptionPane.showMessageDialog(this, "Ticket eliminado correctamente");
+    limpiarCampos();
+    modelo.setRowCount(0); // limpiar tabla
+    jPanelButacas.removeAll();
+    jPanelButacas.revalidate();
+    jPanelButacas.repaint();
+    }//GEN-LAST:event_jButtonEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtoPorFecha;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonActualizar;
+    private javax.swing.JButton jButtonCerrar;
+    private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonPorPelicula;
+    private javax.swing.JComboBox<Comprador> jComboBoxCompradores;
+    private javax.swing.JComboBox<Funcion> jComboBoxFuncion;
     private javax.swing.JComboBox<Pelicula> jComboBoxPeliculas;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
@@ -241,9 +575,16 @@ public class GestionTicket extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabelCantidad;
+    private javax.swing.JLabel jLabelPrecio;
+    private javax.swing.JLabel jLabelTotal;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanelButacas;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableTickets;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextId;
     // End of variables declaration//GEN-END:variables
 
 private void cargarPeliculas(){
@@ -272,5 +613,205 @@ private void armarCabecera(){
 }
 
 
+private void cargarComboFunciones(){
+        jComboBoxFuncion.removeAllItems();
+        List<Funcion> funcion = funcionData.listarFuncion();
+        
+            for (Funcion fun : funcion) {
+            jComboBoxFuncion.addItem(fun);
+        }
+    }
+    
+    private void cargarComboCompradores(){
+        jComboBoxCompradores.removeAllItems();
+        List<Comprador> comprador = compradorData.listarCompradores();
+        
+        for (Comprador compra : comprador) {
+            jComboBoxCompradores.addItem(compra);
+        }
+    
+    }
+   private void cargarDatosTicketEnFormulario(TicketCompra ticket) {
+   jTextId.setText(String.valueOf(ticket.getIdTicket()));
+
+   
+
+    // Monto total
+    jLabelTotal.setText(String.format("%.2f", ticket.getMonto()));
+
+    //  Cargar comprador en el combo
+    if (ticket.getComprador() != null) {
+        int idComprador = ticket.getComprador().getIdComprador();
+        for (int i = 0; i < jComboBoxCompradores.getItemCount(); i++) {
+            Comprador c = jComboBoxCompradores.getItemAt(i);
+            if (c.getIdComprador() == idComprador) {
+                jComboBoxCompradores.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+
+    //  Cargar función en el combo
+    if (ticket.getDetalleticket() != null && ticket.getDetalleticket().getFuncion() != null) {
+        int idFuncion = ticket.getDetalleticket().getFuncion().getIdFuncion();
+        for (int i = 0; i < jComboBoxFuncion.getItemCount(); i++) {
+            Funcion f = jComboBoxFuncion.getItemAt(i);
+            if (f.getIdFuncion() == idFuncion) {
+                jComboBoxFuncion.setSelectedIndex(i);
+                break;
+            }
+        }
+
+        //  Película asociada a la función
+        if (ticket.getDetalleticket().getFuncion().getPelicula() != null) {
+            int idPelicula = ticket.getDetalleticket().getFuncion().getPelicula().getIdPelicula();
+            for (int i = 0; i < jComboBoxPeliculas.getItemCount(); i++) {
+                Pelicula p = jComboBoxPeliculas.getItemAt(i);
+                if (p.getIdPelicula() == idPelicula) {
+                    jComboBoxPeliculas.setSelectedIndex(i);
+                    break;
+                }
+            }
+        }
+    }
+
+    //  Subtotal o precio (si lo querés mostrar)
+    if (ticket.getDetalleticket() != null) {
+        jLabelPrecio.setText(String.format("%.2f", ticket.getDetalleticket().getSubtotal()));
+    }
+
+    //  Cantidad / lugares (más adelante lo manejamos con el panel de butacas)
+    
+        DetalleTicket detalle = ticket.getDetalleticket();
+        int cantidadLugares = 0;
+        if (detalle != null) {
+        if (detalle.getLugar() != null) cantidadLugares++;
+        if (detalle.getCantidad() != null && detalle.getCantidad().getIdLugar() != detalle.getLugar().getIdLugar()) {
+        cantidadLugares++;
+        }
+        }
+
+    jLabelCantidad.setText(String.valueOf(cantidadLugares));
+    
+  
+   crearButacas(detalle.getFuncion().getIdFuncion(), detalle.getIdDetalleTicket());
+    
+    
+   
+    } 
+
+   private void crearButacas(int idFuncion, int idDetalleTicketActual) {
+        jPanelButacas.removeAll();
+       // limpiamos
+        lugaresDisponibles.clear(); 
+
+    LugarData lugarData = new LugarData();
+    DetalleTicketData detalleTicketData = new DetalleTicketData(); 
+
+    List<Lugar> lugares = lugarData.buscarLugaresPorFuncion(idFuncion);
+    List<Lugar> lugaresDelTicket = detalleTicketData.buscarLugaresPorDetalleTicket(idDetalleTicketActual); 
+
+    int columnas = 4;
+    jPanelButacas.setLayout(new GridLayout(0, columnas, 10, 10));
+
+    for (Lugar lu : lugares) {
+        JButton boton = new JButton(lu.getFila() + String.valueOf(lu.getNum()));
+        boton.setPreferredSize(new Dimension(50, 40));
+
+        // Si el lugar pertenece al ticket actual sera azul
+        boolean esDelTicket = lugaresDelTicket.stream()
+                .anyMatch(l -> l.getIdLugar() == lu.getIdLugar());
+
+        if (esDelTicket) {
+            boton.setBackground(Color.BLUE);
+            // ya está seleccionado
+            lugaresDisponibles.add(lu); 
+            boton.addActionListener(e -> {
+                if (lugaresDisponibles.contains(lu)) {
+                    lugaresDisponibles.remove(lu);
+                    boton.setBackground(Color.GREEN);
+                } else {
+                    if (lugaresDisponibles.size() < 2) {
+                        lugaresDisponibles.add(lu);
+                        boton.setBackground(Color.BLUE);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Solo puede seleccionar 2 asientos");
+                    }
+                }
+                actualizarLabels(idFuncion);
+            });
+        }
+        //  Si está ocupado pero no por este ticket  rojo 
+        else if (!lu.isEstado()) {
+            boton.setBackground(Color.RED);
+            boton.setEnabled(false);
+        }
+        //  Si está libre  verde 
+        else {
+            boton.setBackground(Color.GREEN);
+            boton.addActionListener(e -> {
+                if (lugaresDisponibles.contains(lu)) {
+                    lugaresDisponibles.remove(lu);
+                    boton.setBackground(Color.GREEN);
+                } else {
+                    if (lugaresDisponibles.size() < 2) {
+                        lugaresDisponibles.add(lu);
+                        boton.setBackground(Color.BLUE);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Solo puede seleccionar 2 asientos");
+                    }
+                }
+                actualizarLabels(idFuncion);
+            });
+        }
+
+        jPanelButacas.add(boton);
+    }
+
+    jPanelButacas.revalidate();
+    jPanelButacas.repaint();
+    
+    
+    }
+  
+  
+    
+   
+    private void limpiarCampos() {
+    jTextId.setText("");
+    jComboBoxPeliculas.setSelectedIndex(-1);
+    jComboBoxFuncion.setSelectedIndex(-1);
+    jComboBoxCompradores.setSelectedIndex(-1);
+    jDateChooser1.setDate(null);
+    
+    // Limpiarbutacas
+    jPanelButacas.removeAll();
+    jPanelButacas.revalidate();
+    jPanelButacas.repaint();
+    
+    // Reiniciar totales
+    jLabelCantidad.setText("Cantidad: *");
+    jLabelPrecio.setText("Precio: *");
+    jLabelTotal.setText("Total: *");
+    
+    // Vaciar lista de lugares seleccionados
+    lugaresDisponibles.clear();
+    
+    
+    }
+    
+    
+    
+    
+    private void actualizarLabels(int idFuncion) {
+        
+        
+        
+    jLabelCantidad.setText("Cantidad: " + lugaresDisponibles.size());
+    double precio = funcionData.buscarFuncion(idFuncion).getPrecio();
+    jLabelPrecio.setText("Precio: $" + precio);
+    double total = precio * lugaresDisponibles.size();
+    jLabelTotal.setText(String.format("Total: $%.2f", total));
+    }
 
 }

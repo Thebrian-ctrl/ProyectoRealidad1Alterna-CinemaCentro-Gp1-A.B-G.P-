@@ -3,6 +3,7 @@ package Persistencia;
 
 import Modelo.Comprador;
 import Modelo.DetalleTicket;
+import Modelo.Lugar;
 import Modelo.MyConexion;
 import Modelo.TicketCompra;
 import java.sql.Connection;
@@ -70,46 +71,49 @@ public class TicketCompraData {
  
     public TicketCompra buscarTickerporId (int idTicket) {
         TicketCompra ticket = null;
-        String query = "SELECT * FROM ticket WHERE idTicket = ?";
-        
-        try {
-            PreparedStatement ps = conn.prepareStatement(query);
-            ps.setInt(1, idTicket);
+    String query = "SELECT * FROM ticket WHERE idTicket = ?";
+
+    try {
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setInt(1, idTicket);
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            ticket = new TicketCompra();
+            ticket.setIdTicket(rs.getInt("idTicket"));
+            ticket.setFechaCompra(rs.getDate("fechaCompra").toLocalDate());
+            ticket.setFechaFuncion(rs.getTimestamp("fechaFuncion").toLocalDateTime());
+            ticket.setMonto(rs.getDouble("monto"));
+
+            // Cargar comprador completo
             
-            ResultSet rs = ps.executeQuery();
             
-            if (rs.next()) {
-                ticket = new TicketCompra();
-                ticket.setIdTicket(rs.getInt("idTicket"));
-                ticket.setFechaCompra(rs.getDate("fechaCompra").toLocalDate());
-                ticket.setFechaFuncion(rs.getTimestamp("fechaFuncion").toLocalDateTime());
-                ticket.setMonto(rs.getDouble("monto"));
-                
-               
-                Comprador comprador = new Comprador();
-                comprador.setIdComprador(rs.getInt("idComprador"));
-                ticket.setComprador(comprador);
-                
-             
-                int idDetalle = rs.getInt("idDetalleTicket");
-                if (!rs.wasNull()) {
-                    DetalleTicket detalle = new DetalleTicket();
-                    detalle.setIdDetalleTicket(idDetalle);
-                    ticket.setDetalleticket(detalle);
-                }
-                
-            } else {
-                JOptionPane.showMessageDialog(null, "No se encontró ticket con ID: " + idTicket);
-            }
+            int idComprador = rs.getInt("idComprador");
+            CompradorData compradorData = new CompradorData();
+            Comprador comprador = compradorData.buscarCompradorPorId(idComprador);
+            ticket.setComprador(comprador);
+
+            //  Cargar detalle completo
+               int idDetalle = rs.getInt("idDetalleTicket");
+               System.out.println("ID detalle obtenido del ticket: " + idDetalle); 
             
-            rs.close();
-            ps.close();
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al buscar el ticket: " + e.getMessage());
+                DetalleTicketData detalleData = new DetalleTicketData();
+                DetalleTicket detalle = detalleData.buscarDetalleTicket(idDetalle);
+                ticket.setDetalleticket(detalle);
+           
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontró ticket con ID: " + idTicket);
         }
-        
-        return ticket;
+
+        rs.close();
+        ps.close();
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error al buscar el ticket: " + e.getMessage());
+    }
+
+    return ticket;
     }
     
 
@@ -174,42 +178,51 @@ public class TicketCompraData {
     // listo los tickets por fecha 
     
     public List<TicketCompra> listarTicketsPorFecha (LocalDate fecha) {
-        List <TicketCompra> tickets = new ArrayList <> ();
-        String query = "SELECT * FROM ticket WHERE fechacompra = ?" ;
+         List<TicketCompra> tickets = new ArrayList<>();
+    String query = "SELECT * FROM ticket WHERE fechaCompra = ?";
+    
+    try {
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setDate(1, Date.valueOf(fecha));
+        ResultSet rs = ps.executeQuery();
         
-        try {
-            PreparedStatement ps = conn.prepareStatement (query) ;
-            ps.setDate (1, Date.valueOf(fecha));
+        while (rs.next()) {
+            TicketCompra ticket = new TicketCompra();
+            ticket.setIdTicket(rs.getInt("idTicket"));
+            ticket.setFechaCompra(rs.getDate("fechaCompra").toLocalDate());
+            ticket.setFechaFuncion(rs.getTimestamp("fechaFuncion") != null 
+                ? rs.getTimestamp("fechaFuncion").toLocalDateTime() 
+                : null);
+            ticket.setMonto(rs.getDouble("monto"));
             
-            ResultSet rs = ps.executeQuery();
             
-            while (rs.next()) {
-                TicketCompra ticket = new TicketCompra();
-                ticket.setIdTicket(rs.getInt("idTicket"));
-                ticket.setFechaCompra(rs.getDate("fechaCompra").toLocalDate());
-                ticket.setFechaFuncion(rs.getTimestamp("fechaFuncion").toLocalDateTime());
-                ticket.setMonto(rs.getDouble("monto"));
-                
-                Comprador comprador = new Comprador ();
-                comprador.setIdComprador(rs.getInt("idComprador"));
-                
-                int idDetalle = rs.getInt ("IdDetalleTicket");
-                if (!rs.wasNull()) {
-                    DetalleTicket detalle = new DetalleTicket ();
-                    detalle.setIdDetalleTicket(idDetalle);
-                    ticket.setDetalleticket(detalle);
-                }
-                
-                tickets.add (ticket);
+            CompradorData compradorData = new CompradorData();
+            
+            // Cargar comprador
+            Comprador comprador = compradorData.buscarCompradorPorId(rs.getInt("idComprador"));
+            ticket.setComprador(comprador);
+
+            
+            DetalleTicketData detalleTicketData = new DetalleTicketData();
+            
+            // Cargar detalleTicket completo
+            int idDetalle = rs.getInt("idDetalleTicket");
+            if (!rs.wasNull()) {
+                DetalleTicket detalle = detalleTicketData.buscarDetalleTicket(idDetalle);
+                ticket.setDetalleticket(detalle);
             }
-            
-            rs.close ();
-            ps.close();
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al listar tickets"+ e.getMessage());
+
+            tickets.add(ticket);
         }
-        return tickets;
+
+        rs.close();
+        ps.close();
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error al listar tickets por fecha: " + e.getMessage());
+    }
+
+    return tickets;
     }
   
     // listo los tickets por pelicula 
@@ -337,6 +350,7 @@ public class TicketCompraData {
         
         return tickets;
     }
+    
     
   
 }

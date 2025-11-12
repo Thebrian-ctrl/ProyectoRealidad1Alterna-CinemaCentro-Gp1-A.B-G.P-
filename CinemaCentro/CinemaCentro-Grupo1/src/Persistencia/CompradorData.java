@@ -27,6 +27,10 @@ public class CompradorData {
     public CompradorData() {
        conn = MyConexion.buscarConexion();
     }
+
+    CompradorData(Connection conn) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
   
   
   public void guardarComprador(Comprador compra){

@@ -12,6 +12,8 @@ import Modelo.MyConexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +27,8 @@ public class DetalleTicketData {
     public DetalleTicketData() {
         conn = MyConexion.buscarConexion();
     }
+
+    
 
     public void guardarDetalleTicket(DetalleTicket detalle) {
         String query = "INSERT INTO detalleTicket (idFuncion, idLugar, cantidad, subtotal)"
@@ -66,36 +70,48 @@ public class DetalleTicketData {
 
     }
 
-    public void actualizarDetalleTicket(DetalleTicket d) {
-        String query = "UPDATE detalleticket SET idFuncion = ?, idLugar = ?, cantidad = ?, subtotal = ? WHERE idDetalleTicket = ?";
-        
-        
+  public void actualizarDetalleTicket(DetalleTicket d) {
+    String query = "UPDATE detalleticket SET idFuncion = ?, idLugar = ?, cantidad = ?, subtotal = ? WHERE idDetalleTicket = ?";
+    
+    try {
+        PreparedStatement ps = conn.prepareStatement(query);
 
-        try {
-            PreparedStatement ps = conn.prepareStatement(query);
+        ps.setInt(1, d.getFuncion().getIdFuncion());
 
-            ps.setInt(1, d.getFuncion().getIdFuncion());
-            ps.setInt(2, d.getLugar().getIdLugar());
+        // Primer lugar (siempre asumimos que no es null)
+        
+        if(d.getLugar()!= null){
+             ps.setInt(2, d.getLugar().getIdLugar());
+        }else {
+            ps.setNull(2, java.sql.Types.INTEGER);
+        }
+       
+
+        // Segundo lugar: puede ser null
+        if (d.getCantidad() != null) {
             ps.setInt(3, d.getCantidad().getIdLugar());
-            ps.setDouble(4, d.getSubtotal());
-            ps.setInt(5, d.getIdDetalleTicket());
-
-            int actualizado = ps.executeUpdate();
-
-            if (actualizado == 1) {
-                JOptionPane.showMessageDialog(null, "Datos del detalleticket actualizados correctamente");
-            } else {
-                JOptionPane.showMessageDialog(null, "No se pudo actualizar el detalleticket");
-            }
-            ps.close();
-
-        } catch (Exception e) {
-           e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error al actualizar el detalleticket ");
-            
+        } else {
+            ps.setNull(3, java.sql.Types.INTEGER);
         }
 
+        ps.setDouble(4, d.getSubtotal());
+        ps.setInt(5, d.getIdDetalleTicket());
+
+        int actualizado = ps.executeUpdate();
+
+        if (actualizado == 1) {
+            JOptionPane.showMessageDialog(null, "Datos del detalleticket actualizados correctamente");
+        } else {
+            JOptionPane.showMessageDialog(null, "No se pudo actualizar el detalleticket");
+        }
+
+        ps.close();
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Error al actualizar el detalleticket");
     }
+}
 
     public void eliminarDetalleTicket(int idDetalleTicket) {
         String query = "DELETE FROM detalleticket WHERE idDetalleTicket = ?";
@@ -119,6 +135,7 @@ public class DetalleTicketData {
     }
 
     public DetalleTicket buscarDetalleTicket(int id) {
+         System.out.println("Buscando detalle con ID: " + id);
         String query = "SELECT * FROM detalleticket WHERE idDetalleTicket = ?";
 
         DetalleTicket detalle = null;
@@ -142,14 +159,17 @@ public class DetalleTicketData {
                // funcion.setIdFuncion(rs.getInt("idFuncion"));
                 detalle.setFuncion(funcion);
 
-                Lugar lugar = new Lugar();
-                lugar.setIdLugar(rs.getInt("idLugar"));
+                 LugarData lugarData = new LugarData();
+                Lugar lugar = lugarData.buscarLugarPorId(rs.getInt("idLugar"));
                 detalle.setLugar(lugar);
                 
-                Lugar lugar2 = new Lugar();
-                
-                lugar2.setIdLugar(rs.getInt("cantidad"));
-                detalle.setCantidad(lugar2);
+                 int idLugarCantidad = rs.getInt("cantidad");
+                    if (!rs.wasNull()) {
+                    Lugar lugar2 = lugarData.buscarLugarPorId(idLugarCantidad);
+                    detalle.setCantidad(lugar2);
+                     } else {
+                    detalle.setCantidad(null);
+                     }
                 
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontro el detalleticket");
@@ -161,4 +181,41 @@ public class DetalleTicketData {
         }
         return detalle;
     }
+    public List<Lugar> buscarLugaresPorDetalleTicket(int idDetalleTicket) {
+    List<Lugar> lugares = new ArrayList<>();
+
+    String sql = "SELECT idLugar, cantidad FROM detalleticket WHERE idDetalleTicket = ?";
+
+    try {
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, idDetalleTicket);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            int idLugar1 = rs.getInt("idLugar");
+            int idLugar2 = rs.getInt("cantidad"); // este también es un idLugar
+
+            LugarData lugarData = new LugarData();
+
+            // buscar y agregar el primer lugar
+            Lugar lugar1 = lugarData.buscarLugarPorId(idLugar1);
+            if (lugar1 != null) lugares.add(lugar1);
+
+            // buscar y agregar el segundo lugar (si existe)
+            Lugar lugar2 = lugarData.buscarLugarPorId(idLugar2);
+            if (lugar2 != null) lugares.add(lugar2);
+        }
+
+        rs.close();
+        ps.close();
+
+    } catch (Exception e) {
+        System.out.println("Error al buscar lugares por detalle ticket: " + e.getMessage());
+    }
+
+    return lugares;
+}
+    
+    
+   
 }
