@@ -14,9 +14,11 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -80,9 +82,14 @@ public class PanelItemPelicula extends javax.swing.JPanel {
         
         JButton botonEliminar = new JButton("Eliminar");
         JButton botonBaja = new JButton("Dar de baja" );
+        JButton botonAlta = new JButton("Dar de alta");
+        JButton actualizarBtn = new JButton("Actualizar");
         
         panelBotones.add(botonEliminar);
         panelBotones.add(botonBaja);
+        panelBotones.add(botonAlta);
+        panelBotones.add(actualizarBtn);
+        
         
        
         
@@ -108,6 +115,33 @@ public class PanelItemPelicula extends javax.swing.JPanel {
             }
             
         });
+        
+        botonAlta.addActionListener(e -> {
+            int opcion = JOptionPane.showConfirmDialog(this, "¿Dar de alta a la pelicula?",
+                    "Confirmar suba a cartelera", JOptionPane.YES_NO_OPTION);
+            
+            if (opcion == JOptionPane.YES_OPTION) {
+                pelicula.setCartelera(false);
+                peliData.darAltaCartelera(pelicula.getIdPelicula());
+            }
+        });
+        
+        actualizarBtn.addActionListener(e -> {
+            JDesktopPane desktopPane = (JDesktopPane) SwingUtilities.getAncestorOfClass(JDesktopPane.class, this);
+            
+            if(desktopPane != null){
+                PantallaPeliculas pelis = new PantallaPeliculas();
+                desktopPane.add(pelis);
+                pelis.setVisible(true);
+                
+                pelis.setLocation(
+                        (desktopPane.getWidth() - pelis.getWidth()) / 2,
+                        (desktopPane.getHeight() - pelis.getHeight()) / 2
+                );
+            }
+        
+        });
+        
           
         this.add(panelBotones, BorderLayout.EAST);
         

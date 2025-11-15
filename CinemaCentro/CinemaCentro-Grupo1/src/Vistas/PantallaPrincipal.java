@@ -50,6 +50,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenuSala = new javax.swing.JMenuItem();
         jMenuItemTicket = new javax.swing.JMenuItem();
         jMenuItemGestionTicket = new javax.swing.JMenuItem();
+        jMenuItemCompradores = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -153,6 +154,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jmFunciones.add(jMenuItemGestionTicket);
 
+        jMenuItemCompradores.setText("Compradores");
+        jMenuItemCompradores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCompradoresActionPerformed(evt);
+            }
+        });
+        jmFunciones.add(jMenuItemCompradores);
+
         jmenuBar.add(jmFunciones);
 
         setJMenuBar(jmenuBar);
@@ -175,7 +184,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         PantallaPeliculas pelis = new PantallaPeliculas();
         pelis.setVisible(true);
-        //jDescritorio.add(pelis);
+        desktopConFondo2.add(pelis);
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -227,6 +236,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         desktopConFondo2.add(gestion);
     }//GEN-LAST:event_jMenuItemGestionTicketActionPerformed
 
+    private void jMenuItemCompradoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCompradoresActionPerformed
+        // TODO add your handling code here:
+        PruebaLISTARCOMPRADORES comprador = new PruebaLISTARCOMPRADORES();
+        comprador.setVisible(true);
+        desktopConFondo2.add(comprador);
+    }//GEN-LAST:event_jMenuItemCompradoresActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -261,6 +277,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuItem jMenuFuncion;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItemCompradores;
     private javax.swing.JMenuItem jMenuItemGestionTicket;
     private javax.swing.JMenuItem jMenuItemTicket;
     private javax.swing.JMenuItem jMenuSala;

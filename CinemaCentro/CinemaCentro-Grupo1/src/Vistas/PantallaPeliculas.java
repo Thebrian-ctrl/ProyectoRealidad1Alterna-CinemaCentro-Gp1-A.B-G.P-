@@ -389,6 +389,37 @@ public class PantallaPeliculas extends javax.swing.JInternalFrame {
                           return;
                }
           
+          if(jdchooseEstreno == null){
+                   JOptionPane.showMessageDialog(this, "Por favor seleccione una fecha de estreno");
+                   return;
+               }
+               if (this.rutaImagenSelec == null || this.rutaImagenSelec.trim().isEmpty()) {
+                   JOptionPane.showMessageDialog(this, "Por favor seleccione una imagen de cartelera");
+                return;
+            }
+          
+          
+          if(!jtfDirector.getText().matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")){
+                   JOptionPane.showMessageDialog(this, "El nombre del director solo puede contener texto");
+                   jtfDirector.requestFocus();
+                   return;
+               }
+               
+               if(!jtfActores.getText().matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")){
+                   JOptionPane.showMessageDialog(this, "El nombre de los actores solo puede contener texto");
+                   jtfActores.requestFocus();
+                   return;
+               }
+               
+               if(!jtfGenero.getText().matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")){
+                   JOptionPane.showMessageDialog(this, "El genero solo puede contener texto");
+                   jtfGenero.requestFocus();
+                   return;
+               }
+               if(!jtfOrigen.getText().matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")){
+                   JOptionPane.showMessageDialog(this, "El origen solo puede contener texto");
+               }
+          
      
         String titulo = jtfTitulo.getText();
         

@@ -5,9 +5,16 @@
 package VistaUsuario;
 
 import Modelo.Pelicula;
+import Modelo.Sala;
 import Persistencia.PeliculaData;
+import Persistencia.SalaData;
+
 import java.awt.CardLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.List;
+import static javax.management.Query.value;
 import javax.swing.JPanel;
 
 /**
@@ -22,12 +29,28 @@ public class PanelListaPeliculas extends javax.swing.JPanel {
     PeliculaData peliculaData;
         
      private ItemPeliculas panelSeleccionadoActual = null;
+     SalaData salaData = new SalaData();
     public PanelListaPeliculas() {
         initComponents();
         this.peliculaData = new PeliculaData();
         
         jbSiguiente.setEnabled(false);
-        cargarPeliculasEnLista();
+        actualizarListaPeliculas();
+        cargarSalasEnComboBox();
+        
+        
+        jcbSalas.addActionListener((ActionEvent e) -> {
+            actualizarListaPeliculas();
+            
+        }
+        );
+        
+        jtfBuscarNombre.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                actualizarListaPeliculas();
+            }
+        });
     }
 
     /**
@@ -43,7 +66,10 @@ public class PanelListaPeliculas extends javax.swing.JPanel {
         panelLista = new javax.swing.JPanel();
         jbSiguiente = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jtfFiltrarPorTitulo = new javax.swing.JTextField();
+        jtfBuscarNombre = new javax.swing.JTextField();
+        jLabelSalas = new javax.swing.JLabel();
+        jcbSalas = new javax.swing.JComboBox<>();
+        jbLimpiarFiltros = new javax.swing.JButton();
 
         panelLista.setLayout(new javax.swing.BoxLayout(panelLista, javax.swing.BoxLayout.Y_AXIS));
         jScrollPanelLista.setViewportView(panelLista);
@@ -56,6 +82,15 @@ public class PanelListaPeliculas extends javax.swing.JPanel {
         });
 
         jLabel1.setText("Filtrar por titulo:");
+
+        jLabelSalas.setText("Filtrar por salas");
+
+        jbLimpiarFiltros.setText("Limpiar");
+        jbLimpiarFiltros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLimpiarFiltrosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -70,16 +105,25 @@ public class PanelListaPeliculas extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfFiltrarPorTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(904, Short.MAX_VALUE))
+                .addComponent(jtfBuscarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(jLabelSalas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jcbSalas, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 407, Short.MAX_VALUE)
+                .addComponent(jbLimpiarFiltros)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(8, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jtfFiltrarPorTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfBuscarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelSalas)
+                    .addComponent(jcbSalas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbLimpiarFiltros))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPanelLista, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -99,19 +143,37 @@ public class PanelListaPeliculas extends javax.swing.JPanel {
         cl.show(panelContenedor, "Funcion");
     }//GEN-LAST:event_jbSiguienteActionPerformed
 
+    private void jbLimpiarFiltrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarFiltrosActionPerformed
+        // TODO add your handling code here:
+        jtfBuscarNombre.setText("");
+        jcbSalas.setSelectedIndex(0);
+        actualizarListaPeliculas();
+    }//GEN-LAST:event_jbLimpiarFiltrosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelSalas;
     private javax.swing.JScrollPane jScrollPanelLista;
+    private javax.swing.JButton jbLimpiarFiltros;
     private javax.swing.JButton jbSiguiente;
-    private javax.swing.JTextField jtfFiltrarPorTitulo;
+    private javax.swing.JComboBox<Sala> jcbSalas;
+    private javax.swing.JTextField jtfBuscarNombre;
     private javax.swing.JPanel panelLista;
     // End of variables declaration//GEN-END:variables
 
-      private void cargarPeliculasEnLista(){
+      private void actualizarListaPeliculas(){
           panelLista.removeAll();
           
-          List<Pelicula> peliculas = peliculaData.listarPeliculasCartelera();
+          String nombre = jtfBuscarNombre.getText();
+          Sala salaSeleccionada = (Sala) jcbSalas.getSelectedItem();
+          
+          Integer idSala = (salaSeleccionada != null) ? salaSeleccionada.getIdSala() : null;
+          
+          panelSeleccionadoActual = null;
+          
+          
+          List<Pelicula> peliculas = peliculaData.filtrarPeliculas(nombre, idSala);
           
           for (Pelicula p : peliculas) {
               ItemPeliculas itemPanel = new ItemPeliculas(p, peliculaData);
@@ -138,8 +200,22 @@ public class PanelListaPeliculas extends javax.swing.JPanel {
           panelLista.revalidate();
           panelLista.repaint();
       }
+      
+      
+      private void cargarSalasEnComboBox(){
+          jcbSalas.removeAllItems();
+          
+          jcbSalas.addItem(null);
+          
+          List<Sala> salas = salaData.listarSalas();
+          for (Sala s : salas) {
+              jcbSalas.addItem(s);
+          }
+           
+      }
+      
+  }
 
 
-}
 
 

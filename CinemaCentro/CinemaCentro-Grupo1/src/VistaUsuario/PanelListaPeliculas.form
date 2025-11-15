@@ -26,18 +26,27 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jtfFiltrarPorTitulo" min="-2" pref="232" max="-2" attributes="0"/>
-              <EmptySpace pref="904" max="32767" attributes="0"/>
+              <Component id="jtfBuscarNombre" min="-2" pref="232" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+              <Component id="jLabelSalas" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jcbSalas" min="-2" pref="212" max="-2" attributes="0"/>
+              <EmptySpace pref="407" max="32767" attributes="0"/>
+              <Component id="jbLimpiarFiltros" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace pref="10" max="32767" attributes="0"/>
+              <EmptySpace pref="8" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jtfFiltrarPorTitulo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtfBuscarNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelSalas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jcbSalas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbLimpiarFiltros" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPanelLista" min="-2" pref="422" max="-2" attributes="0"/>
@@ -74,7 +83,30 @@
         <Property name="text" type="java.lang.String" value="Filtrar por titulo:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jtfFiltrarPorTitulo">
+    <Component class="javax.swing.JTextField" name="jtfBuscarNombre">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelSalas">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Filtrar por salas"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jcbSalas">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Sala&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="jbLimpiarFiltros">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Limpiar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbLimpiarFiltrosActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

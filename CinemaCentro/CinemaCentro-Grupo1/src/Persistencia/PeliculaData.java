@@ -311,6 +311,60 @@ public class PeliculaData {
             return peliculas;
     }
     
+    public List<Pelicula> filtrarPeliculas (String nombre, Integer idSala){
+        List<Pelicula> peliculas = new ArrayList<>();
+        
+        StringBuilder query = new StringBuilder("SELECT DISTINCT p.* FROM pelicula p ");
+        
+        if(idSala != null){
+            query.append("JOIN funcion f ON p.idPelicula = f.idPelicula ");
+        }
     
-    
+        query.append("WHERE p.cartelera = true ");
+        
+        if(nombre != null && !nombre.trim().isEmpty()){
+            query.append("AND p.titulo LIKE ? ");
+        
+        }
+        if(idSala != null){
+            query.append("AND f.idSala = ? ");
+        }
+        
+        try {
+            PreparedStatement ps = conn.prepareStatement(query.toString());
+            
+            int paramIndex = 1;
+            if(nombre != null && !nombre.trim().isEmpty()){
+                ps.setString(paramIndex,"%" + nombre + "%");
+                paramIndex++;
+            }
+            
+            if(idSala != null){
+                ps.setInt(paramIndex, idSala);
+            }
+            
+            ResultSet rs = ps.executeQuery();
+            
+                while (rs.next()) {
+                    Pelicula peli = new Pelicula();
+                    peli.setIdPelicula(rs.getInt("idPelicula"));
+                    peli.setTitulo(rs.getString("titulo"));
+                    peli.setDirector(rs.getString("director"));
+                    peli.setActores(rs.getString("actores"));
+                    peli.setOrigen(rs.getString("origen"));
+                    peli.setGenero(rs.getString("genero"));
+                    peli.setEstreno(rs.getDate("estreno").toLocalDate());
+                    peli.setCartelera(rs.getBoolean("cartelera"));
+                    peli.setRutaImagen(rs.getString("rutaimagen"));
+                    
+                    peliculas.add(peli);
+                
+            }
+            
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al filtrar las peliculas: " + e.getMessage());
+        }
+        return peliculas;
+    }    
 }
