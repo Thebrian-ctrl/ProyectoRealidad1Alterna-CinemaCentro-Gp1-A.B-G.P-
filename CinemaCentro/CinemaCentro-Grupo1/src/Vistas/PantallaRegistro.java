@@ -262,9 +262,17 @@ public class PantallaRegistro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbuttonActualizarActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        // TODO add your handling code here:
+        
+// TODO add your handling code here:
+            
+          if(jTextDni.getText().isEmpty()){
+              JOptionPane.showMessageDialog(this, "Debe ingresar el DNI del usuario que desea buscar ");
+              return;
+          }
         try{
         
+            
+            
        int dni = Integer.parseInt(jTextDni.getText());
         
        Comprador c = compradorData.buscarComprador(dni);

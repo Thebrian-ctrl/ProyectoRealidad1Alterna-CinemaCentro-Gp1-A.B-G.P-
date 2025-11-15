@@ -16,8 +16,12 @@ public class PruebaLISTARCOMPRADORES extends javax.swing.JInternalFrame {
      * Creates new form PruebaLISTARCOMPRADORES
      */
     public PruebaLISTARCOMPRADORES() {
+        //Este jInternalFrame es un contenedor, ya que un jDesktopPane no puede abrir paneles, utilice un InternalFrame para mostrar otros paneles usando CardLayout
+        
         initComponents();
          ListarCompradores panelPelis = new ListarCompradores();
+         
+         //establece el panel que queremos mostrar en el cardlayour y le asigna un nombre, para que podamos llamarlo desde otro panel
         panelContenedor.add(panelPelis, "compradores");
     }
 

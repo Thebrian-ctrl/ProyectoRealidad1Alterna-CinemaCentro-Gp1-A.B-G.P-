@@ -327,6 +327,11 @@ public class GestionTicket extends javax.swing.JInternalFrame {
         Pelicula pelicula = (Pelicula) jComboBoxPeliculas.getSelectedItem();
         modelo.setRowCount(0);
         
+        if (jComboBoxPeliculas.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una pelicula para realizar la busqueda");
+            
+            return;
+        }
         
         
         for(TicketCompra t : ticketCompraData.ListarTicketsPorPelicula(pelicula.getIdPelicula())){
@@ -370,6 +375,10 @@ public class GestionTicket extends javax.swing.JInternalFrame {
         modelo.setRowCount(0);
         
        // sacamos la fecha q esta en el chooser
+       if(jDateChooser1.getDate() == null){
+           JOptionPane.showMessageDialog(this, "Debe seleccionar una fecha para realizar la busqueda");
+           return;
+       }
                 
         LocalDate fechaSeleccionada =  jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         

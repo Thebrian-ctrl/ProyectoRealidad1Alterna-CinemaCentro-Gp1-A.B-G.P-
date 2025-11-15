@@ -233,7 +233,7 @@ public class PantallaPeliculas extends javax.swing.JInternalFrame {
 
     private void jbGuardar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardar2ActionPerformed
         // TODO add your handling code here:
-        
+        //Validaciones para que no se guarden datos vacios o incorrectos
         try {
             
                if(jtfTitulo.getText().trim().isEmpty() || jtfDirector.getText().trim().isEmpty() || jtfGenero.getText().trim().isEmpty() ||
@@ -303,6 +303,7 @@ public class PantallaPeliculas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         JFileChooser fileChooser = new JFileChooser();
         
+        //Filtro para que cuando abra la ventana que nos permite elegir el archivo solo aparezcan imagenes de formato jpg, png, jpeg
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagenes (jpg, png, jpeg)", "jpg", "png", "jpeg");
         fileChooser.setFileFilter(filter);
         
@@ -314,6 +315,7 @@ public class PantallaPeliculas extends javax.swing.JInternalFrame {
             
             Path destino = Paths.get("src/img/" + archivoOriginal.getName());
             
+            //hago una copia del archivo seleccionado, para que se guarde en los archivos del proyecto         
             Files.copy(archivoOriginal.toPath(), destino, StandardCopyOption.REPLACE_EXISTING);
             
             this.rutaImagenSelec = "src/img/" + archivoOriginal.getName();

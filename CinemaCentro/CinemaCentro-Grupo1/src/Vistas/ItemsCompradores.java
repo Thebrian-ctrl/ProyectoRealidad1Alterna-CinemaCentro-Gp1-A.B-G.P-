@@ -68,13 +68,16 @@ public class ItemsCompradores extends javax.swing.JPanel {
         JButton btnEliminar = new JButton("Eliminar");
         
         btnActualizar.addActionListener(e -> {
+            //Busca al jdesktopPane mas cercano para mostrar la ventana que queremos abrir
             JDesktopPane desktopPane = (JDesktopPane) SwingUtilities.getAncestorOfClass(JDesktopPane.class, this);
             
+            //Si encuentra un desktopPane entra a la condicion
             if(desktopPane != null){
                 PantallaRegistro reg = new PantallaRegistro();
                 desktopPane.add(reg);
                 reg.setVisible(true);
                 
+                //establece la ubicacion de la nueva ventana que queremos abrir
                 reg.setLocation(
                         (desktopPane.getWidth() - reg.getWidth()) / 2,
                         (desktopPane.getHeight() - reg.getHeight()) / 2
