@@ -4,6 +4,7 @@
  */
 package Vistas;
 
+import Modelo.Comprador;
 import VistaUsuario.PaginaPrincipal;
 
 
@@ -20,8 +21,17 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form PantallaPrincipal
      */
-    public PantallaPrincipal() {
-        initComponents();       
+    private Comprador usuarioActual;
+    public PantallaPrincipal(Comprador usuario) {
+        initComponents();   
+        this.usuarioActual = usuario;
+        configurarPermisos();
+        
+        setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
+    }
+
+    private PantallaPrincipal() {
+        
     }
 
     /**
@@ -246,27 +256,27 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new PantallaPrincipal().setVisible(true));
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+//            logger.log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(() -> new PantallaPrincipal().setVisible(true));
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Vistas.DesktopConFondo desktopConFondo2;
@@ -288,4 +298,22 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPasswordField jpContraseña;
     private javax.swing.JMenuItem menuListaPelis;
     // End of variables declaration//GEN-END:variables
+    
+    private void configurarPermisos(){
+        if(usuarioActual == null){
+            this.setTitle("CinemaCentro - Modo ADMINISTRADOR");
+            jmenuBar.setVisible(true);
+            jmenuBar.setEnabled(true);
+            
+            jmPeliculas.setVisible(true);
+            jmFunciones.setVisible(true);
+        }else{
+            this.setTitle("CinemaCentro - Bienvenido " + usuarioActual.getNombre());
+            jmenuBar.setVisible(false);
+            jmPeliculas.setVisible(false);
+            jmFunciones.setVisible(false);
+        
+        }
+    }
+
 }

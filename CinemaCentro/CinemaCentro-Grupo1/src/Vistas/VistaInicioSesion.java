@@ -4,6 +4,14 @@
  */
 package Vistas;
 
+import Modelo.Comprador;
+import Persistencia.CompradorData;
+import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author arceb
@@ -11,12 +19,16 @@ package Vistas;
 public class VistaInicioSesion extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VistaInicioSesion.class.getName());
+    
+    CompradorData compradorData = new CompradorData();
 
     /**
      * Creates new form VistaInicioSesion
      */
     public VistaInicioSesion() {
         initComponents();
+        
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**
@@ -41,6 +53,9 @@ public class VistaInicioSesion extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanelRegistro = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,6 +91,11 @@ public class VistaInicioSesion extends javax.swing.JFrame {
         jTextFieldDni.setForeground(new java.awt.Color(204, 204, 204));
         jTextFieldDni.setText("Ingrese su DNI");
         jTextFieldDni.setBorder(null);
+        jTextFieldDni.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTextFieldDniMousePressed(evt);
+            }
+        });
         Background.add(jTextFieldDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 190, 30));
         Background.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 200, -1));
 
@@ -86,8 +106,13 @@ public class VistaInicioSesion extends javax.swing.JFrame {
 
         jPasswordField.setBackground(new java.awt.Color(255, 255, 255));
         jPasswordField.setForeground(new java.awt.Color(204, 204, 204));
-        jPasswordField.setText("jPasswordField1");
+        jPasswordField.setText("*********");
         jPasswordField.setBorder(null);
+        jPasswordField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPasswordFieldMousePressed(evt);
+            }
+        });
         Background.add(jPasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 200, 30));
         Background.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 200, 10));
 
@@ -98,6 +123,11 @@ public class VistaInicioSesion extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("ENTRAR");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -116,6 +146,32 @@ public class VistaInicioSesion extends javax.swing.JFrame {
 
         Background.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 200, 50));
 
+        jLabel2.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("¿No tienes cuenta? ¡Registrate!");
+        Background.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 490, 170, -1));
+
+        jPanelRegistro.setBackground(new java.awt.Color(255, 186, 0));
+
+        jLabel3.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Registrarse");
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout jPanelRegistroLayout = new javax.swing.GroupLayout(jPanelRegistro);
+        jPanelRegistro.setLayout(jPanelRegistroLayout);
+        jPanelRegistroLayout.setHorizontalGroup(
+            jPanelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+        );
+        jPanelRegistroLayout.setVerticalGroup(
+            jPanelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+        );
+
+        Background.add(jPanelRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, 200, 50));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,6 +185,75 @@ public class VistaInicioSesion extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextFieldDniMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldDniMousePressed
+        // TODO add your handling code here:
+        if(jTextFieldDni.getText().equals("Ingrese su DNI")){
+        jTextFieldDni.setText("");
+        jTextFieldDni.setForeground(Color.BLACK);
+        }
+        if(String.valueOf(jPasswordField.getPassword()).isEmpty()){
+        jPasswordField.setText("*********");
+        jPasswordField.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_jTextFieldDniMousePressed
+
+    private void jPasswordFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordFieldMousePressed
+        // TODO add your handling code here:
+        if(String.valueOf(jPasswordField.getPassword()).equals("*********")){
+        jPasswordField.setText("");
+        jPasswordField.setForeground(Color.black);
+        }
+        if(jTextFieldDni.getText().isEmpty()){
+        jTextFieldDni.setText("Ingrese su DNI");
+        jTextFieldDni.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_jPasswordFieldMousePressed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        String usuario = jTextFieldDni.getText();
+        String password = new String (jPasswordField.getPassword());
+        
+        if(usuario.equals("admin") && password.equals("admin")){
+            JOptionPane.showMessageDialog(this, "Bienvenido, Administrador");
+            
+            PantallaPrincipal principal = new PantallaPrincipal(null);
+            
+            
+            principal.addWindowListener(new WindowAdapter(){
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    jPasswordField.setText("");
+                    VistaInicioSesion.this.setVisible(true);
+                }
+            
+            });
+            principal.setVisible(true);
+            
+            this.setVisible(false);
+            return;
+        }
+        
+        try {
+            int dni = Integer.parseInt(usuario);
+            Comprador comprador = compradorData.buscarComprador(dni);
+            
+                if(comprador != null && comprador.getPassword().equals(password)){
+                    JOptionPane.showMessageDialog(this, "¡Bienvenido! " + comprador.getNombre());
+                    
+                    PantallaPrincipal principal = new PantallaPrincipal(comprador);
+                    principal.setVisible(true);
+                
+                }else{
+                    JOptionPane.showMessageDialog(this, "DNI o contraseña incorrectos");
+                }
+                
+                
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Usuario no valido. Ingrese su DNI");
+        }
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -158,6 +283,8 @@ public class VistaInicioSesion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelCinema;
     private javax.swing.JLabel jLabelCinemacentro;
     private javax.swing.JLabel jLabelContraseña;
@@ -165,6 +292,7 @@ public class VistaInicioSesion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelIniciarSesion;
     private javax.swing.JLabel jLabelUsuario;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanelRegistro;
     private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
