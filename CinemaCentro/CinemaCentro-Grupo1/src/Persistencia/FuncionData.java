@@ -347,4 +347,44 @@ public class FuncionData {
 
     return funcion;
 }
+    
+    public List<Funcion> buscarFuncionPorPelicula(int idPelicula){
+        List<Funcion> funciones = new ArrayList<>();
+        
+        String query = "SELECT * FROM funcion WHERE idPelicula = ? AND horarioInicio > NOW()";
+        
+        PeliculaData peliData = new PeliculaData();
+        SalaData salaData = new SalaData();
+        
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, idPelicula);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {                
+                Funcion f = new Funcion();
+                f.setIdFuncion(rs.getInt("idfuncion"));
+                f.setIdioma(rs.getString("idioma"));
+                f.setEs3d(rs.getBoolean("es3d"));
+                f.setSubtitulado(rs.getBoolean("subtitulado"));
+                f.setHoraInicio(rs.getTimestamp("horarioinicio").toLocalDateTime());
+                f.setHoraFin(rs.getTimestamp("horariofin").toLocalDateTime());
+                f.setPrecio(rs.getDouble("precio"));
+                
+                int idPeli = rs.getInt("idPelicula");
+                f.setPelicula(peliData.buscarPeliculaPorId(idPeli));
+                
+                int idSala = rs.getInt("idSala");
+                f.setSalaProyeccion(salaData.buscarSala(idSala));
+                
+                funciones.add(f);
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al buscar funciones por pelicula: " +  e.getMessage());
+        }
+        
+        return funciones;
+    }
 }

@@ -138,6 +138,12 @@ public class Funcion {
 
     @Override
     public String toString() {
+        String tituloPelicula;
+        if(this.pelicula != null){
+            tituloPelicula = this.pelicula.getTitulo();
+        }else{
+            tituloPelicula = "Pelicula no cargada";
+        }
     String sub = subtitulado ? "Subtitulada" : "Doblada";
     String tresD = es3d ? "3D" : "2D";
 
