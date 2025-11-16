@@ -263,7 +263,7 @@ public class vistaSala extends javax.swing.JInternalFrame {
     private void jBActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBActualizarActionPerformed
        
         SalaData salaData = new SalaData();
-        
+              
         try{
          if (jTextID.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingrese un ID para buscar la sala.");

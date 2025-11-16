@@ -10,6 +10,7 @@ import Persistencia.PeliculaData;
 import Persistencia.SalaData;
 
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -135,10 +136,22 @@ public class PanelListaPeliculas extends javax.swing.JPanel {
     private void jbSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSiguienteActionPerformed
         // TODO add your handling code here:
         Pelicula peliculaElegida = panelSeleccionadoActual.getPelicula();
+     
         
         JPanel panelContenedor = (JPanel) this.getParent();
         
         CardLayout cl = (CardLayout) panelContenedor.getLayout();
+        
+        for (Component comp : panelContenedor.getComponents()) {
+            if(comp instanceof PanelFunciones){
+                PanelFunciones panelFun = (PanelFunciones) comp;
+                
+                panelFun.cargarFuncionesParaPelicula(peliculaElegida);
+                
+                break;
+            }
+                
+        }
         
         cl.show(panelContenedor, "Funcion");
     }//GEN-LAST:event_jbSiguienteActionPerformed
