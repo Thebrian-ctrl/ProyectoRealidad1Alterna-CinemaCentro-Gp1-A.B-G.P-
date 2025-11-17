@@ -6,6 +6,7 @@ package Vistas;
 
 import Modelo.Comprador;
 import VistaUsuario.PaginaPrincipal;
+import VistaUsuario.Precios;
 
 
 
@@ -24,6 +25,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private Comprador usuarioActual;
     public PantallaPrincipal(Comprador usuario) {
         initComponents();   
+        desktopConFondo2.setLayout(null);
         this.usuarioActual = usuario;
         configurarPermisos();
         
@@ -44,72 +46,61 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         desktopConFondo2 = new Vistas.DesktopConFondo();
-        jButtonInicioSesion = new javax.swing.JButton();
-        jTextFieldDNI = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jButtonRegistro = new javax.swing.JButton();
-        jpContraseña = new javax.swing.JPasswordField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jButtonPelisEnCartelera = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jButtonProximosEstrenos = new javax.swing.JButton();
+        jButtonPrecios = new javax.swing.JButton();
         jmenuBar = new javax.swing.JMenuBar();
         jmPeliculas = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         menuListaPelis = new javax.swing.JMenuItem();
         jMenuItemEstadistica = new javax.swing.JMenuItem();
-        jMenuEstrenos = new javax.swing.JMenuItem();
         jmFunciones = new javax.swing.JMenu();
         jMenuFuncion = new javax.swing.JMenuItem();
         jMenuSala = new javax.swing.JMenuItem();
         jMenuItemTicket = new javax.swing.JMenuItem();
         jMenuItemGestionTicket = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
         jMenuItemCompradores = new javax.swing.JMenuItem();
         jMenuItemCompradorLista = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButtonInicioSesion.setText("Iniciar Sesion");
-        jButtonInicioSesion.addActionListener(new java.awt.event.ActionListener() {
+        jButtonPelisEnCartelera.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
+        jButtonPelisEnCartelera.setText("Peliculas en cartelera");
+        jButtonPelisEnCartelera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonInicioSesionActionPerformed(evt);
+                jButtonPelisEnCarteleraActionPerformed(evt);
             }
         });
-        desktopConFondo2.add(jButtonInicioSesion);
-        jButtonInicioSesion.setBounds(730, 380, 180, 50);
+        desktopConFondo2.add(jButtonPelisEnCartelera);
+        jButtonPelisEnCartelera.setBounds(740, 230, 180, 50);
 
-        jTextFieldDNI.setForeground(new java.awt.Color(153, 153, 153));
-        jTextFieldDNI.setText("Ingrese su DNI");
-        desktopConFondo2.add(jTextFieldDNI);
-        jTextFieldDNI.setBounds(730, 250, 180, 30);
+        jLabel4.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel4.setText("¡Bienvenido a CinemaCentro!");
+        desktopConFondo2.add(jLabel4);
+        jLabel4.setBounds(790, 70, 330, 50);
 
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("¿No tiene cuenta? ¡Registrate!");
-        desktopConFondo2.add(jLabel1);
-        jLabel1.setBounds(740, 450, 180, 16);
-
-        jButtonRegistro.setText("Registrarse");
-        jButtonRegistro.addActionListener(new java.awt.event.ActionListener() {
+        jButtonProximosEstrenos.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
+        jButtonProximosEstrenos.setText("Proximos estrenos");
+        jButtonProximosEstrenos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRegistroActionPerformed(evt);
+                jButtonProximosEstrenosActionPerformed(evt);
             }
         });
-        desktopConFondo2.add(jButtonRegistro);
-        jButtonRegistro.setBounds(730, 480, 180, 50);
+        desktopConFondo2.add(jButtonProximosEstrenos);
+        jButtonProximosEstrenos.setBounds(990, 230, 190, 50);
 
-        jpContraseña.setText("jPasswordField1");
-        desktopConFondo2.add(jpContraseña);
-        jpContraseña.setBounds(730, 320, 180, 30);
-
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Ingrese su DNI");
-        desktopConFondo2.add(jLabel2);
-        jLabel2.setBounds(770, 200, 90, 30);
-
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Contraseña:");
-        desktopConFondo2.add(jLabel3);
-        jLabel3.setBounds(780, 290, 70, 16);
+        jButtonPrecios.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
+        jButtonPrecios.setText("Precios");
+        jButtonPrecios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPreciosActionPerformed(evt);
+            }
+        });
+        desktopConFondo2.add(jButtonPrecios);
+        jButtonPrecios.setBounds(880, 390, 150, 50);
 
         jmenuBar.setEnabled(false);
 
@@ -138,14 +129,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
         jmPeliculas.add(jMenuItemEstadistica);
-
-        jMenuEstrenos.setText("Estrenos");
-        jMenuEstrenos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuEstrenosActionPerformed(evt);
-            }
-        });
-        jmPeliculas.add(jMenuEstrenos);
 
         jmenuBar.add(jmPeliculas);
 
@@ -183,13 +166,17 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jmFunciones.add(jMenuItemGestionTicket);
 
+        jmenuBar.add(jmFunciones);
+
+        jMenu1.setText("Gestion Clientes");
+
         jMenuItemCompradores.setText("Compradores");
         jMenuItemCompradores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemCompradoresActionPerformed(evt);
             }
         });
-        jmFunciones.add(jMenuItemCompradores);
+        jMenu1.add(jMenuItemCompradores);
 
         jMenuItemCompradorLista.setText("ListaCompradores");
         jMenuItemCompradorLista.addActionListener(new java.awt.event.ActionListener() {
@@ -197,9 +184,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 jMenuItemCompradorListaActionPerformed(evt);
             }
         });
-        jmFunciones.add(jMenuItemCompradorLista);
+        jMenu1.add(jMenuItemCompradorLista);
 
-        jmenuBar.add(jmFunciones);
+        jmenuBar.add(jMenu1);
 
         setJMenuBar(jmenuBar);
 
@@ -222,6 +209,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         PantallaPeliculas pelis = new PantallaPeliculas();
         pelis.setVisible(true);
         desktopConFondo2.add(pelis);
+        desktopConFondo2.moveToFront(pelis);
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -230,13 +218,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         ListarPeliculas list = new ListarPeliculas();
         list.setVisible(true);
         desktopConFondo2.add(list);
+        desktopConFondo2.moveToFront(list);
     }//GEN-LAST:event_menuListaPelisActionPerformed
 
     private void jMenuFuncionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuFuncionActionPerformed
         // TODO add your handling code here:
         VistaFuncion fun = new VistaFuncion();
         fun.setVisible(true);
-        desktopConFondo2.add(fun);        
+        desktopConFondo2.add(fun);  
+        desktopConFondo2.moveToFront(fun);
     }//GEN-LAST:event_jMenuFuncionActionPerformed
 
     private void jMenuSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSalaActionPerformed
@@ -244,26 +234,23 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         vistaSala sala = new vistaSala();
         sala.setVisible(true);
         desktopConFondo2.add(sala);
+        desktopConFondo2.moveToFront(sala);
     }//GEN-LAST:event_jMenuSalaActionPerformed
 
-    private void jButtonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistroActionPerformed
-        // TODO add your handling code here:
-        PantallaRegistro registro = new PantallaRegistro();
-        registro.setVisible(true);
-        desktopConFondo2.add(registro);
-    }//GEN-LAST:event_jButtonRegistroActionPerformed
-
-    private void jButtonInicioSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInicioSesionActionPerformed
+    private void jButtonPelisEnCarteleraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPelisEnCarteleraActionPerformed
         // TODO add your handling code here:
         PaginaPrincipal inicio = new PaginaPrincipal();
         inicio.setVisible(true);
-        desktopConFondo2.add(inicio);       
+        desktopConFondo2.add(inicio);
+        desktopConFondo2.moveToFront(inicio);
        
-    }//GEN-LAST:event_jButtonInicioSesionActionPerformed
+    }//GEN-LAST:event_jButtonPelisEnCarteleraActionPerformed
 
     private void jMenuItemTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTicketActionPerformed
       VistaDetalleTicket ticket = new VistaDetalleTicket();
       ticket.setVisible(true);
+      
+      desktopConFondo2.moveToFront(ticket);
       
     }//GEN-LAST:event_jMenuItemTicketActionPerformed
 
@@ -271,6 +258,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         GestionTicket gestion = new GestionTicket();
         gestion.setVisible(true);
         desktopConFondo2.add(gestion);
+        desktopConFondo2.moveToFront(gestion);
     }//GEN-LAST:event_jMenuItemGestionTicketActionPerformed
 
     private void jMenuItemCompradoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCompradoresActionPerformed
@@ -278,6 +266,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         PruebaLISTARCOMPRADORES comprador = new PruebaLISTARCOMPRADORES();
         comprador.setVisible(true);
         desktopConFondo2.add(comprador);
+        desktopConFondo2.moveToFront(comprador);
     }//GEN-LAST:event_jMenuItemCompradoresActionPerformed
 
     private void jMenuItemCompradorListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCompradorListaActionPerformed
@@ -285,6 +274,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         ListaCompradoresPorFecha comprador = new ListaCompradoresPorFecha();
         comprador.setVisible(true);
         desktopConFondo2.add(comprador);
+        desktopConFondo2.moveToFront(comprador);
     }//GEN-LAST:event_jMenuItemCompradorListaActionPerformed
 
     private void jMenuItemEstadisticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEstadisticaActionPerformed
@@ -292,16 +282,23 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         PeliculasMasVistas vistas = new PeliculasMasVistas();
         vistas.setVisible(true);
         desktopConFondo2.add(vistas);
+        desktopConFondo2.moveToFront(vistas);
     }//GEN-LAST:event_jMenuItemEstadisticaActionPerformed
 
-    private void jMenuEstrenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEstrenosActionPerformed
+    private void jButtonProximosEstrenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProximosEstrenosActionPerformed
         // TODO add your handling code here:
-        
-        
         Estrenos list = new Estrenos();
         list.setVisible(true);
         desktopConFondo2.add(list);
-    }//GEN-LAST:event_jMenuEstrenosActionPerformed
+        desktopConFondo2.moveToFront(list);
+    }//GEN-LAST:event_jButtonProximosEstrenosActionPerformed
+
+    private void jButtonPreciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPreciosActionPerformed
+        // TODO add your handling code here:
+        Precios precios = new Precios();
+        precios.setVisible(true);
+        desktopConFondo2.add(precios);
+    }//GEN-LAST:event_jButtonPreciosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -330,12 +327,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Vistas.DesktopConFondo desktopConFondo2;
-    private javax.swing.JButton jButtonInicioSesion;
-    private javax.swing.JButton jButtonRegistro;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenuItem jMenuEstrenos;
+    private javax.swing.JButton jButtonPelisEnCartelera;
+    private javax.swing.JButton jButtonPrecios;
+    private javax.swing.JButton jButtonProximosEstrenos;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuFuncion;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemCompradorLista;
@@ -344,11 +340,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemGestionTicket;
     private javax.swing.JMenuItem jMenuItemTicket;
     private javax.swing.JMenuItem jMenuSala;
-    private javax.swing.JTextField jTextFieldDNI;
     private javax.swing.JMenu jmFunciones;
     private javax.swing.JMenu jmPeliculas;
     private javax.swing.JMenuBar jmenuBar;
-    private javax.swing.JPasswordField jpContraseña;
     private javax.swing.JMenuItem menuListaPelis;
     // End of variables declaration//GEN-END:variables
     

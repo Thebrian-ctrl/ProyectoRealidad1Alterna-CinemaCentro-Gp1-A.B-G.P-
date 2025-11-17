@@ -24,10 +24,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javax.swing.JButton;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -52,6 +54,15 @@ public class PanelFunciones extends javax.swing.JPanel {
         initComponents();
         this.funcionData = new FuncionData();
         cargarComboCompradores();
+        
+        jComboBoxCompradores.addActionListener(new java.awt.event.ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent evt){
+                verificarMetodoPago();
+            }
+            
+        
+        });
+        
     }
 
     /**
@@ -76,6 +87,7 @@ public class PanelFunciones extends javax.swing.JPanel {
         jButtonComprar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jComboBoxCompradores = new javax.swing.JComboBox<>();
+        jButtonTarjeta = new javax.swing.JButton();
 
         jBAtras.setText("Atras");
         jBAtras.addActionListener(new java.awt.event.ActionListener() {
@@ -133,6 +145,14 @@ public class PanelFunciones extends javax.swing.JPanel {
 
         jLabel1.setText("Cliente:");
 
+        jButtonTarjeta.setText("Añadir tarjeta");
+        jButtonTarjeta.setEnabled(false);
+        jButtonTarjeta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTarjetaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -157,11 +177,16 @@ public class PanelFunciones extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(67, 67, 67)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JLabelTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JLabelCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JLabelPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(67, 67, 67)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(JLabelTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(JLabelCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(JLabelPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(jButtonTarjeta)))
                         .addContainerGap(16, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBAtras)
@@ -194,6 +219,8 @@ public class PanelFunciones extends javax.swing.JPanel {
                         .addGap(38, 38, 38)
                         .addComponent(JLabelPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonTarjeta)
+                        .addGap(63, 63, 63)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonComprar)
                             .addComponent(jBAtras))
@@ -335,6 +362,22 @@ public class PanelFunciones extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jButtonComprarActionPerformed
 
+    private void jButtonTarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTarjetaActionPerformed
+        // TODO add your handling code here:
+        JDesktopPane desktop = (JDesktopPane) SwingUtilities.getAncestorOfClass(JDesktopPane.class, this);
+        
+        if(desktop != null){
+            DatosTarjeta tarjeta = new DatosTarjeta();
+            
+            desktop.add(tarjeta);
+            
+            tarjeta.setVisible(true);
+            
+            desktop.moveToFront(tarjeta);
+        }
+        
+    }//GEN-LAST:event_jButtonTarjetaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JLabelCantidad;
@@ -342,6 +385,7 @@ public class PanelFunciones extends javax.swing.JPanel {
     private javax.swing.JLabel JLabelTotal;
     private javax.swing.JButton jBAtras;
     private javax.swing.JButton jButtonComprar;
+    private javax.swing.JButton jButtonTarjeta;
     private javax.swing.JComboBox<Comprador> jComboBoxCompradores;
     private javax.swing.JComboBox<Funcion> jComboBoxFuncion;
     private javax.swing.JLabel jLabel1;
@@ -449,5 +493,22 @@ public class PanelFunciones extends javax.swing.JPanel {
         
         return sb.toString();
     }
-
+    
+    
+    private void verificarMetodoPago(){
+        Comprador compradorSelec = (Comprador) jComboBoxCompradores.getSelectedItem();
+        
+        if(compradorSelec != null){
+            String metodoPago = compradorSelec.getMedioDePago();
+            
+            if("Tarjeta de credito".equalsIgnoreCase(metodoPago) || "credito".equalsIgnoreCase(metodoPago)){
+                jButtonTarjeta.setEnabled(true);
+            }else{
+                jButtonTarjeta.setEnabled(false);
+            }
+        
+        }else{
+            jButtonTarjeta.setEnabled(false);
+        }
+    }
 }

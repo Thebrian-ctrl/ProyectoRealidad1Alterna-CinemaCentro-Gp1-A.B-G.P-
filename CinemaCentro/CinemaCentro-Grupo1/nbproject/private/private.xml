@@ -3,15 +3,42 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Persistencia/TicketCompraData.java</file>
-            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Persistencia/DetalleTicketData.java</file>
-            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Persistencia/CompradorData.java</file>
-            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Vistas/GestionTicket.java</file>
-            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/VistaUsuario/PanelFunciones.java</file>
-            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Vistas/VistaDetalleTicket.java</file>
-            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Modelo/Comprador.java</file>
-            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Persistencia/LugarData.java</file>
-            <file>file:/C:/Users/paula/OneDrive/Documentos/NetBeansProjects/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Vistas/PantallaPrincipal.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Vistas/PantallaRegistro.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Vistas/PantallaPeliculas.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Persistencia/PeliculaData.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Vistas/PanelItemPelicula.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Vistas/ListarPeliculas.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/cinemacentro/grupo1/CinemaCentroGrupo1.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Vistas/vistaSala.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Persistencia/DetalleTicketData.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Vistas/CompraTicket.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Vistas/VistaFuncion.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Vistas/VistaDetalleTicket.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/VistaUsuario/PanelFunciones.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Persistencia/CompradorData.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Modelo/Comprador.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Vistas/ListarCompradores.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Vistas/ItemsCompradores.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Vistas/GestionTicket.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Modelo/DetalleTicket.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Persistencia/FuncionData.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Persistencia/LugarData.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Persistencia/SalaData.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Persistencia/TicketCompraData.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Vistas/VistaInicioSesion.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/VistaUsuario/PanelListaPeliculas.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Modelo/Funcion.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Vistas/PantallaPrincipal.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/VistaUsuario/ItemPeliculas.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/VistaUsuario/PaginaPrincipal.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Vistas/PruebaLISTARCOMPRADORES.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Vistas/ListaCompradoresPorFecha.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Vistas/PeliculasMasVistas.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Modelo/Lugar.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Modelo/Pelicula.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Modelo/Sala.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Modelo/TicketCompra.java</file>
+            <file>file:/E:/Desarrollo%20de%20software/ProyectoFinalAlterno/ProyectoRealidad1Alterna-CinemaCentro-Gp1-A.B-G.P-/CinemaCentro/CinemaCentro-Grupo1/src/Vistas/PanelItemPeliculaEstreno.java</file>
         </group>
     </open-files>
 </project-private>

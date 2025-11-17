@@ -127,7 +127,7 @@ public class FuncionData {
             int eliminado = ps.executeUpdate();
             
             
-            if(eliminado > 1) {
+            if(eliminado >= 1) {
                 JOptionPane.showMessageDialog(null, "Funcion eliminado correctamente");
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontró la funcion con ese ID");
