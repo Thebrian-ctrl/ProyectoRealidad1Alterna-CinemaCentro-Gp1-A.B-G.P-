@@ -404,4 +404,46 @@ public class PeliculaData {
         return peliculas;
     }
     
+    
+    public List<Pelicula> proximosEstrenos(){
+        
+        List<Pelicula> lista = new ArrayList<>();
+        
+        
+        String query = " SELECT * FROM pelicula WHERE estreno > CURDATE() ORDER BY estreno ASC ";
+        
+        
+        try{
+            
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs= ps.executeQuery();
+            
+            while(rs.next()){
+                Pelicula peli = new Pelicula();
+                
+                peli.setIdPelicula(rs.getInt("idPelicula"));
+                peli.setTitulo(rs.getString("titulo"));
+                peli.setDirector(rs.getString("director"));
+                peli.setActores(rs.getString("actores"));
+                peli.setOrigen(rs.getString("origen"));
+                peli.setGenero(rs.getString("genero"));
+                peli.setEstreno(rs.getDate("estreno").toLocalDate());
+                peli.setCartelera(rs.getBoolean("cartelera"));
+                
+                peli.setRutaImagen(rs.getString("rutaImagen"));
+                
+                lista.add(peli);
+        }
+            ps.close();
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al obtener proximos estrenos ");
+            
+        }
+        
+        
+        
+        return lista; 
+    }
+    
 }

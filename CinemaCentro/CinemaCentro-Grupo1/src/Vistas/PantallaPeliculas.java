@@ -69,6 +69,7 @@ public class PantallaPeliculas extends javax.swing.JInternalFrame {
         jRadioButtonCartelera = new javax.swing.JRadioButton();
         jLabelImagen = new javax.swing.JLabel();
         jButtonBuscar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         labelTitulo.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         labelTitulo.setText("Administracion de Peliculas");
@@ -129,6 +130,13 @@ public class PantallaPeliculas extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton1.setText("Cerrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -173,8 +181,13 @@ public class PantallaPeliculas extends javax.swing.JInternalFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelTitulo)
-                .addGap(93, 93, 93))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(labelTitulo)
+                        .addGap(93, 93, 93))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(19, 19, 19))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,7 +234,9 @@ public class PantallaPeliculas extends javax.swing.JInternalFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jbGuardar2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(63, 63, 63))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(13, 13, 13))
         );
 
         pack();
@@ -458,8 +473,13 @@ public class PantallaPeliculas extends javax.swing.JInternalFrame {
             
     }//GEN-LAST:event_jbActualizarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelActores;

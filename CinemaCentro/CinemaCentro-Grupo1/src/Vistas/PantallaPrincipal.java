@@ -56,6 +56,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         menuListaPelis = new javax.swing.JMenuItem();
         jMenuItemEstadistica = new javax.swing.JMenuItem();
+        jMenuEstrenos = new javax.swing.JMenuItem();
         jmFunciones = new javax.swing.JMenu();
         jMenuFuncion = new javax.swing.JMenuItem();
         jMenuSala = new javax.swing.JMenuItem();
@@ -137,6 +138,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
         jmPeliculas.add(jMenuItemEstadistica);
+
+        jMenuEstrenos.setText("Estrenos");
+        jMenuEstrenos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuEstrenosActionPerformed(evt);
+            }
+        });
+        jmPeliculas.add(jMenuEstrenos);
 
         jmenuBar.add(jmPeliculas);
 
@@ -285,6 +294,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         desktopConFondo2.add(vistas);
     }//GEN-LAST:event_jMenuItemEstadisticaActionPerformed
 
+    private void jMenuEstrenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEstrenosActionPerformed
+        // TODO add your handling code here:
+        
+        
+        Estrenos list = new Estrenos();
+        list.setVisible(true);
+        desktopConFondo2.add(list);
+    }//GEN-LAST:event_jMenuEstrenosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -317,6 +335,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenuItem jMenuEstrenos;
     private javax.swing.JMenuItem jMenuFuncion;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemCompradorLista;
