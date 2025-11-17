@@ -366,5 +366,42 @@ public class PeliculaData {
             JOptionPane.showMessageDialog(null, "Error al filtrar las peliculas: " + e.getMessage());
         }
         return peliculas;
-    }    
+    } 
+    
+    public List<Object[]> listarPeliculasMasVistas(){
+        
+        List<Object[]> peliculas = new ArrayList<>();
+        
+        String query = "SELECT p.idPelicula, p.titulo, COUNT(*) AS cantidad_vistas\n" +
+"        FROM ticket t\n" +
+"        JOIN detalleticket dt ON t.idDetalleTicket = dt.idDetalleTicket\n" +
+"        JOIN funcion f ON dt.idFuncion = f.idFuncion\n" +
+"        JOIN pelicula p ON f.idPelicula = p.idPelicula\n" +
+"        GROUP BY p.idPelicula\n" +
+"        ORDER BY cantidad_vistas DESC";
+        
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                
+                peliculas.add(new Object[]{rs.getString("titulo"), rs.getInt("cantidad_vistas")});
+                
+                
+            }
+            
+            ps.close();
+            rs.close();
+            
+            
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Error al obtener peliculas mas vistas");
+        }
+        
+        return peliculas;
+    }
+    
 }

@@ -55,12 +55,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jmPeliculas = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         menuListaPelis = new javax.swing.JMenuItem();
+        jMenuItemEstadistica = new javax.swing.JMenuItem();
         jmFunciones = new javax.swing.JMenu();
         jMenuFuncion = new javax.swing.JMenuItem();
         jMenuSala = new javax.swing.JMenuItem();
         jMenuItemTicket = new javax.swing.JMenuItem();
         jMenuItemGestionTicket = new javax.swing.JMenuItem();
         jMenuItemCompradores = new javax.swing.JMenuItem();
+        jMenuItemCompradorLista = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -128,6 +130,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jmPeliculas.add(menuListaPelis);
 
+        jMenuItemEstadistica.setText("Estadisticas");
+        jMenuItemEstadistica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemEstadisticaActionPerformed(evt);
+            }
+        });
+        jmPeliculas.add(jMenuItemEstadistica);
+
         jmenuBar.add(jmPeliculas);
 
         jmFunciones.setText("Funciones");
@@ -172,6 +182,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jmFunciones.add(jMenuItemCompradores);
 
+        jMenuItemCompradorLista.setText("ListaCompradores");
+        jMenuItemCompradorLista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCompradorListaActionPerformed(evt);
+            }
+        });
+        jmFunciones.add(jMenuItemCompradorLista);
+
         jmenuBar.add(jmFunciones);
 
         setJMenuBar(jmenuBar);
@@ -180,7 +198,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopConFondo2, javax.swing.GroupLayout.DEFAULT_SIZE, 1036, Short.MAX_VALUE)
+            .addComponent(desktopConFondo2, javax.swing.GroupLayout.DEFAULT_SIZE, 1262, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,30 +271,44 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         desktopConFondo2.add(comprador);
     }//GEN-LAST:event_jMenuItemCompradoresActionPerformed
 
+    private void jMenuItemCompradorListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCompradorListaActionPerformed
+        // TODO add your handling code here:
+        ListaCompradoresPorFecha comprador = new ListaCompradoresPorFecha();
+        comprador.setVisible(true);
+        desktopConFondo2.add(comprador);
+    }//GEN-LAST:event_jMenuItemCompradorListaActionPerformed
+
+    private void jMenuItemEstadisticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEstadisticaActionPerformed
+        // TODO add your handling code here:
+        PeliculasMasVistas vistas = new PeliculasMasVistas();
+        vistas.setVisible(true);
+        desktopConFondo2.add(vistas);
+    }//GEN-LAST:event_jMenuItemEstadisticaActionPerformed
+
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-//            logger.log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(() -> new PantallaPrincipal().setVisible(true));
-//    }
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> new PantallaPrincipal().setVisible(true));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Vistas.DesktopConFondo desktopConFondo2;
@@ -287,7 +319,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuItem jMenuFuncion;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItemCompradorLista;
     private javax.swing.JMenuItem jMenuItemCompradores;
+    private javax.swing.JMenuItem jMenuItemEstadistica;
     private javax.swing.JMenuItem jMenuItemGestionTicket;
     private javax.swing.JMenuItem jMenuItemTicket;
     private javax.swing.JMenuItem jMenuSala;

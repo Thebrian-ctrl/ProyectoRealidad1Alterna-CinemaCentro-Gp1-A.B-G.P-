@@ -380,7 +380,8 @@ public class FuncionData {
                 
                 funciones.add(f);
             }
-            
+            rs.close();
+            ps.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al buscar funciones por pelicula: " +  e.getMessage());
         }

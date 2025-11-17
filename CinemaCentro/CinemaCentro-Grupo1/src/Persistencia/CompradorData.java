@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -226,7 +227,42 @@ public class CompradorData {
 }
   
   
+  public List<Comprador> listarCompradorPorFecha(LocalDate fecha){
+      List<Comprador> compradores = new ArrayList<>();
+      
+     String query = "SELECT DISTINCT c.* FROM comprador c " +
+                 "JOIN ticket t ON c.idComprador = t.idComprador " +
+                 "WHERE DATE(t.fechaFuncion) = ? ";
   
+     
+      try {
+          PreparedStatement ps = conn.prepareStatement(query);
+          ps.setDate(1, java.sql.Date.valueOf(fecha));
+          
+          ResultSet rs = ps.executeQuery();
+          
+          while(rs.next()){
+              Comprador comprador = new Comprador();
+              
+              comprador.setIdComprador(rs.getInt("idComprador"));
+              comprador.setDni(rs.getInt("dni"));
+              comprador.setNombre(rs.getString("nombre"));          
+              comprador.setPassword(rs.getString("password"));
+              comprador.setMedioDePago(rs.getString("medioDePago"));
+              comprador.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
+              
+              compradores.add(comprador);
+          
+          }
+          
+          rs.close();
+          ps.close();
+          
+      } catch (Exception e) {
+          JOptionPane.showMessageDialog(null, "Error al listar compradores " + e.getMessage());
+      }
+           return compradores;
+  }
   
   
 

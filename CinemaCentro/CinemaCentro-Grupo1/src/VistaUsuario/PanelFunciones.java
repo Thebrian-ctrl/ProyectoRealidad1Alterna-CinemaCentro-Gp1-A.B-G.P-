@@ -22,6 +22,7 @@ import java.awt.GridLayout;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -287,9 +288,12 @@ public class PanelFunciones extends javax.swing.JPanel {
         butacas += ", " + det.getCantidad().getFila() + det.getCantidad().getNum();
         }
         
+        String codigo = generarCodigo();
+        
         String mensaje = "===== CINEMACENTRO =====\n\n"
             + "TICKET DE COMPRA\n"
             + "-----------------------------\n"
+            + "Codigo de retiro: " + codigo + "\n"
             + "Comprador: " + ticket.getComprador().getNombre() + "\n"
             + "Película: " + det.getFuncion().getPelicula().getTitulo() + "\n"
             + "Sala: " + det.getFuncion().getSalaProyeccion().getNroSala() + "\n"
@@ -427,6 +431,23 @@ public class PanelFunciones extends javax.swing.JPanel {
             jComboBoxCompradores.addItem(compra);
         }
     
+    }
+    
+    private String generarCodigo(){
+        Random rand = new Random();
+        StringBuilder sb = new StringBuilder("RTR-");
+        
+        for (int i = 0; i < 3; i++) {
+            char letra = (char)('A' + rand.nextInt(26));
+            
+            sb.append(letra);
+            
+        }
+        int numero = rand.nextInt(1000);
+        
+        sb.append(String.format("%03d", numero));
+        
+        return sb.toString();
     }
 
 }
