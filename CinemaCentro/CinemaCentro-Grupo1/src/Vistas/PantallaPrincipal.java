@@ -26,6 +26,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public PantallaPrincipal(Comprador usuario) {
         initComponents();   
         desktopConFondo2.setLayout(null);
+        
+        desktopConFondo2.setBackground(java.awt.Color.decode("#2C3E50"));
+        
         this.usuarioActual = usuario;
         configurarPermisos();
         

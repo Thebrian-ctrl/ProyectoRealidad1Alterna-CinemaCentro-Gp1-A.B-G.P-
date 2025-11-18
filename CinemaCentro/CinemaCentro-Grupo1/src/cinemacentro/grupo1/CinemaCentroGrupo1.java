@@ -25,6 +25,10 @@ import java.time.LocalTime;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
+import com.formdev.flatlaf.FlatDarkLaf;
+import javax.swing.UIManager;
+import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,6 +40,24 @@ public class CinemaCentroGrupo1 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        //En caso de querer usar la vista predeterminada de netbeans, comentar todo hasta la linea 57
+        
+        try {
+            UIManager.put("Component.accentColor", new Color(255, 140, 0));
+            //Establece los botones cuadrados sin curvas en los bordes
+            UIManager.put("Button.arc", 0);
+            //Establece bordes cuadrados para todo
+            UIManager.put("Component.arc", 0);
+            
+            //Inicia la libreria para que la aplicacion inicie con los cambios
+            FlatDarkLaf.setup();
+        } catch (Exception e) {
+            System.out.println("Error al iniciar la libreria de diseñor FlatLaf");
+        }
+        
+        //Iniciamos la vista de Inicio de sesion
+        java.awt.EventQueue.invokeLater(() -> new Vistas.VistaInicioSesion().setVisible(true));
         // TODO code application logic here
 
 //        Pelicula peli1 = new Pelicula("El señor de los anillos", "Chritopher Nolan", "Brad pitt", "Estado Unidos", "Aventuras", LocalDate.of(2005, Month.MARCH, 15), true);

@@ -51,6 +51,7 @@ public class vistaSala extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setText("Salas");
 
+        jLabel2.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
         jLabel2.setText("ID Sala: ");
 
         jBuscar.setText("Buscar");
@@ -60,12 +61,16 @@ public class vistaSala extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
         jLabel3.setText("Numero de Sala:");
 
+        jLabel4.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
         jLabel4.setText("Apta para 3D:");
 
+        jLabel5.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
         jLabel5.setText("Capacidad:");
 
+        jLabel6.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
         jLabel6.setText("Estado:");
 
         jRadio3d.setText("SI");
@@ -113,25 +118,21 @@ public class vistaSala extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextID, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextID)
+                            .addComponent(jTextNroSala)
+                            .addComponent(jCapacidad)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel5))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextNroSala)
-                                    .addComponent(jCapacidad)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jRadio3d)
-                                            .addComponent(jRadioEstado))
-                                        .addGap(0, 51, Short.MAX_VALUE)))))
+                                    .addComponent(jRadio3d)
+                                    .addComponent(jRadioEstado))
+                                .addGap(0, 53, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
                         .addComponent(jBuscar)
                         .addGap(37, 37, 37))

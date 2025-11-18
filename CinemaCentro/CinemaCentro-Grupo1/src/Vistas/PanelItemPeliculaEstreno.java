@@ -14,12 +14,9 @@ import java.awt.Image;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+
 
 /**
  *
@@ -65,84 +62,42 @@ public class PanelItemPeliculaEstreno extends javax.swing.JPanel {
         JLabel labelGenero = new JLabel("Genero: " + pelicula.getGenero());
         JLabel labelActores = new JLabel("Actores: " + pelicula.getActores());
         JLabel labelOrigen = new JLabel("Origen: " + pelicula.getOrigen());
-        JLabel labelEstreno = new JLabel("Fecha de estreno: " + pelicula.getEstreno());
+        
         
         panelDatos.add(labelTitulo);
         panelDatos.add(labelDirector);
         panelDatos.add(labelGenero);
         panelDatos.add(labelActores);
         panelDatos.add(labelOrigen);
-        panelDatos.add(labelEstreno);
+        
         
         this.add(panelDatos, BorderLayout.CENTER);
         
         //--------------------------acciones-------------------------------------------------
-        JPanel panelBotones = new JPanel();
-        panelBotones.setLayout(new BoxLayout(panelBotones, BoxLayout.Y_AXIS));
+        JPanel panelFecha = new JPanel();
+        panelFecha.setLayout(new BoxLayout(panelFecha, BoxLayout.Y_AXIS));
         
-        JButton botonEliminar = new JButton("Eliminar");
-        JButton botonBaja = new JButton("Dar de baja" );
-        JButton botonAlta = new JButton("Dar de alta");
-        JButton actualizarBtn = new JButton("Actualizar");
+        panelFecha.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 20, 0, 20));
         
-     
-        panelBotones.add(botonAlta);
-       
+        JLabel labelTituloFecha = new JLabel("ESTRENO");
+        
+        labelTituloFecha.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        labelTituloFecha.setAlignmentX(CENTER_ALIGNMENT);
+        
+        JLabel labelEstreno = new JLabel(pelicula.getEstreno().toString());
+        labelEstreno.setFont(new Font("Segoe UI", Font.BOLD, 28));
+        
+        labelEstreno.setAlignmentX(CENTER_ALIGNMENT);
+        
+        panelFecha.add(javax.swing.Box.createVerticalGlue());
+        panelFecha.add(labelTituloFecha);
+        panelFecha.add(labelEstreno);
+        panelFecha.add(javax.swing.Box.createVerticalGlue());
         
         
-       
-        
-        botonEliminar.addActionListener(e ->{
-            int opcion = JOptionPane.showConfirmDialog(this, "¿Seguro que desea eliminar esta pelicula de la base de datos?",
-                     "Confirmar Eliminicion", JOptionPane.YES_NO_OPTION);
-                
-                 if(opcion == JOptionPane.YES_OPTION) {
-                     peliData.eliminarPelicula(pelicula.getIdPelicula());
-                     
-                
-            }
-        });
-        
-        botonBaja.addActionListener(e -> {
-            int opcion = JOptionPane.showConfirmDialog(this, "¿Dar de baja a la pelicula en cartelera?",
-                     "Confirmar baja", JOptionPane.YES_NO_OPTION);
-            
-            if (opcion == JOptionPane.YES_OPTION) {
-                pelicula.setCartelera(false);
-                peliData.darBajaCartelera(pelicula.getIdPelicula());
-                
-            }
-            
-        });
-        
-        botonAlta.addActionListener(e -> {
-            int opcion = JOptionPane.showConfirmDialog(this, "¿Dar de alta a la pelicula?",
-                    "Confirmar suba a cartelera", JOptionPane.YES_NO_OPTION);
-            
-            if (opcion == JOptionPane.YES_OPTION) {
-                pelicula.setCartelera(false);
-                peliData.darAltaCartelera(pelicula.getIdPelicula());
-            }
-        });
-        
-        actualizarBtn.addActionListener(e -> {
-            JDesktopPane desktopPane = (JDesktopPane) SwingUtilities.getAncestorOfClass(JDesktopPane.class, this);
-            
-            if(desktopPane != null){
-                PantallaPeliculas pelis = new PantallaPeliculas();
-                desktopPane.add(pelis);
-                pelis.setVisible(true);
-                
-                pelis.setLocation(
-                        (desktopPane.getWidth() - pelis.getWidth()) / 2,
-                        (desktopPane.getHeight() - pelis.getHeight()) / 2
-                );
-            }
-        
-        });
-        
+  
           
-        this.add(panelBotones, BorderLayout.EAST);
+        this.add(panelFecha, BorderLayout.EAST);
         
         
     }
