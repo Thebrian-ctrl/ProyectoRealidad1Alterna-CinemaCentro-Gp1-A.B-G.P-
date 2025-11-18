@@ -233,6 +233,11 @@ public class vistaSala extends javax.swing.JInternalFrame {
            JOptionPane.showMessageDialog(this, "Debe ingresar el número de sala.");
             return;
         }
+        
+        if(jTextNroSala.getText().matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")){
+            JOptionPane.showMessageDialog(this, "El numero de sala solo puede contener numeros");
+            return;
+        }
 
         int numero = Integer.parseInt(jTextNroSala.getText());
         boolean apto3D = jRadio3d.isSelected();
@@ -270,7 +275,15 @@ public class vistaSala extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Ingrese un ID para buscar la sala.");
             return;
         }
+         if (jTextNroSala.getText().isEmpty()) {
+           JOptionPane.showMessageDialog(this, "Debe ingresar el número de sala.");
+            return;
+        }
          
+         if(jTextNroSala.getText().matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")){
+            JOptionPane.showMessageDialog(this, "El numero de sala solo puede contener numeros");
+            return;
+        }
          
          
           int id = Integer.parseInt(jTextID.getText());

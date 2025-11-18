@@ -23,6 +23,7 @@ public class PeliculasMasVistas extends javax.swing.JInternalFrame {
         initComponents();
         cabecera();
         cargarPeliculas();
+        jTable1.getTableHeader().setReorderingAllowed(false);
     }
 
     /**

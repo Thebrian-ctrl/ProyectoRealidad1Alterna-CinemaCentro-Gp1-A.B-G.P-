@@ -217,6 +217,16 @@ public class Registro extends javax.swing.JFrame {
                 return;
             }
             
+            if(!jTextNombre.getText().trim().matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")){
+                JOptionPane.showMessageDialog(this, "El nombre no puede contener numeros o otros caracteres especiales");
+                return;
+            }
+            
+            if(jTextDni.getText().matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")){
+                JOptionPane.showMessageDialog(this, "El dni solo puede contener numeros");
+                return;
+            }
+            
             
             Comprador comprador = new Comprador();
             comprador.setNombre(jTextNombre.getText());

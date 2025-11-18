@@ -60,6 +60,7 @@ public class GestionTicket extends javax.swing.JInternalFrame {
         cargarComboCompradores();
         limpiarCampos();
        
+        jTableTickets.getTableHeader().setReorderingAllowed(false);
     }
 
     /**
